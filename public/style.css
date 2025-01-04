@@ -1,0 +1,553 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    line-height: 1.5;
+    color: #001b48;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+
+/* Header Styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    background: #001b48; /* Azul oscuro */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* Asegura que el header esté por encima */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo img {
+    height: 80px; /* Tamaño del logo en pantallas grandes */
+    transition: height 0.3s ease; /* Transición para cambiar suavemente el tamaño */
+}
+
+/* Botones de redes sociales */
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alineación de los iconos de redes sociales */
+    margin-left: 15px; /* Espaciado entre el logo y las redes sociales */
+}
+
+.social-icon {
+    margin-left: 10px;
+    display: inline-block;
+    color: white; /* Color de los iconos */
+}
+
+.social-icon svg {
+    fill: white; /* Color blanco para los iconos */
+    height: 30px;
+    width: 30px;
+}
+
+/* Menú de navegación */
+nav {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 20; /* Asegura que el menú esté por encima de las redes sociales */
+    margin-top: 0; /* Eliminar cualquier margen que cause un espacio extra */
+}
+
+/* Estilo de los enlaces */
+nav a {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: 0.3s;
+}
+
+/* Estilos del hover y active en los enlaces */
+nav a:hover,
+nav a.active {
+    color: #97cadb;
+}
+
+/* Responsivo para pantallas pequeñas (menos de 768px) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: row; /* Disposición en fila en pantallas pequeñas */
+        justify-content: space-between;
+    }
+
+    .logo img {
+        height: 60px; /* Tamaño más pequeño para el logo en pantallas pequeñas */
+    }
+
+    .social-icons {
+        margin-left: 15px; /* Espaciado entre el logo y las redes sociales */
+    }
+
+    .menu-toggle {
+        display: block; /* Mostrar el botón para abrir el menú en pantallas pequeñas */
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 30px; /* Tamaño más grande para el botón */
+        cursor: pointer;
+        z-index: 101; /* Asegura que esté encima del menú */
+        padding: 0; /* Eliminar cualquier padding extra que cause tamaño innecesario */
+        position: absolute;
+        top: 20px; /* Mover el botón hacia abajo para no estar justo al lado del logo */
+        right: 20px; /* Ajustar la posición a la derecha */
+    }
+
+    nav {
+        position: absolute;
+        top: 80px; /* Ajuste para evitar que el menú quede pegado al logo */
+        right: 0;
+        background: #001b48;
+        width: 100%;
+        flex-direction: column;
+        padding: 20px 0;
+        align-items: flex-end; /* Alineación de los enlaces a la derecha */
+        display: none; /* Escondido por defecto en pantallas pequeñas */
+    }
+
+    nav.show {
+        display: flex; /* Mostrar el menú cuando tiene la clase "show" */
+    }
+
+    nav a {
+        margin: 10px 20px; /* Espaciado entre enlaces */
+        font-size: 18px; /* Tamaño más grande para los enlaces */
+    }
+}
+
+/* Responsivo para pantallas muy pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+    .logo img {
+        height: 50px; /* Logo aún más pequeño en pantallas muy pequeñas */
+    }
+
+    nav a {
+        font-size: 16px; /* Ajuste del tamaño de los enlaces */
+    }
+}
+
+/* Mostrar el menú siempre en pantallas grandes */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none; /* Ocultar el botón en pantallas grandes */
+    }
+
+    nav {
+        display: flex; /* El menú se muestra de forma horizontal */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Home Section */
+#home {
+    min-height: 100vh; /* La sección cubre toda la altura de la ventana */
+    margin-top: 80px; /* Asegura que no quede tapada por el header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eef3ed; /* Fondo claro (puedes cambiar o eliminarlo si el GIF lo cubre completamente) */
+}
+
+#home .content img {
+    width: 100%; /* Asegura que el GIF ocupe todo el ancho */
+    height: 100%; /* Asegura que el GIF ocupe toda la altura */
+    object-fit: cover; /* Escala el GIF para cubrir toda la sección */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* About Us Section */
+#about-us {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #97cadb; /* Azul claro */
+    color: #fff; /* Texto blanco */
+}
+#about-us .content h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+#about-us .content p {
+    font-size: 1rem;
+}
+
+/* Services Section */
+#services {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #fff; /* Fondo blanco */
+    color: #001b48; /* Texto azul oscuro */
+}
+#services .content h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+#services .content p {
+    font-size: 1rem;
+}
+
+
+
+
+
+/* Contact Us Section */
+#contact-us {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #001b48; /* Azul oscuro */
+    color: #fff; /* Texto blanco */
+}
+#contact-us .content h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+#contact-us .content p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+#contact-us form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#contact-us form input,
+#contact-us form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fff; /* Borde blanco */
+    border-radius: 5px;
+    background: #001b48; /* Azul oscuro */
+    color: #fff; /* Texto blanco */
+}
+#contact-us form textarea::placeholder,
+#contact-us form input::placeholder {
+    color: #fff; /* Placeholder blanco */
+}
+#contact-us form button {
+    background: #97cadb; /* Azul claro */
+    color: #001b48; /* Texto azul oscuro */
+    font-weight: 600;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#contact-us form button:hover {
+    background: #018abe; /* Azul vibrante al pasar el cursor */
+}
+
+
+
+
+
+
+
+
+
+
+/* Photos Section */
+#photos {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #eef3ed; /* Fondo claro */
+    color: #001b48; /* Texto azul oscuro */
+}
+#photos .content h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+#photos .content p {
+    font-size: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Reviews Section */
+#reviews {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #eef3ed; /* Fondo claro */
+    color: #001b48; /* Texto azul oscuro */
+    font-family: 'Arial', sans-serif; /* Fuente más limpia */
+    padding: 20px;
+}
+
+#reviews .content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-width: 500px;
+    width: 100%;
+    margin: 0 10px;
+}
+
+#reviews .content h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333; /* Título oscuro */
+}
+
+#reviews .content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555; /* Texto más suave */
+}
+
+/* Estilo para el formulario */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #1d72b8; /* Color azul cuando el campo está en foco */
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Estilo para las estrellas */
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.star {
+    font-size: 30px;
+    color: #ccc; /* Estrellas grises por defecto */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.star.selected {
+    color: #f8b400; /* Estrellas doradas cuando están seleccionadas */
+}
+
+/* Estilo para el botón de envío */
+button {
+    padding: 12px 20px;
+    background-color: #1d72b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #155a8a; /* Color más oscuro en hover */
+}
+
+/* Estilo del mensaje de error o éxito */
+#formMessage {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #ff0000; /* Rojo para errores */
+}
+
+#formMessage.success {
+    color: #28a745; /* Verde para éxito */
+}
+
+/* Modal - Fondo */
+.modal {
+    display: none; /* Inicialmente está oculto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 10; /* Asegúrate que esté por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Para agregar transición */
+    transition: opacity 0.5s ease; /* Transición de opacidad */
+    pointer-events: none; /* Evita que el modal bloquee la interacción cuando está oculto */
+}
+
+/* Cuando el modal está activo, hacemos que se vea y sea interactuable */
+.modal.show {
+    opacity: 1;
+    pointer-events: auto; /* Habilitar la interacción cuando el modal se muestre */
+}
+
+/* Contenido del Modal */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 1; /* Asegurarse que el contenido del modal sea visible */
+}
+
+/* Estilo del botón de cerrar */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+/* Home Section */
+#home {
+    height: auto; /* Ajusta la altura a un 80% de la pantalla */
+    padding: 40px 0;
+}
+
+/* About Us Section */
+#about-us {
+    height: 500px; /* Establecer una altura fija */
+    padding: 40px 0;
+}
+
+/* Services Section */
+#services {
+    height: 500px; /* Establecer una altura fija */
+    padding: 40px 0;
+}
+
+/* Contact Us Section */
+#contact-us {
+    height: 700px; /* Establecer una altura fija */
+    padding: 80px 0;
+}
+
+/* Reviews Section */
+#reviews {
+    height: 750px; /* Establecer una altura fija */
+    padding: 40px 0;
+}
+
