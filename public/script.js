@@ -98,3 +98,25 @@ document.addEventListener('DOMContentLoaded', () => {
         nav.classList.toggle('show'); // Alternar la clase 'show' para mostrar/ocultar el menú
     });
 });
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.header-menu-toggle');
+    const nav = document.querySelector('.header-nav');
+    const navLinks = document.querySelectorAll('.header-nav a');
+
+    // Función para mostrar/ocultar el menú
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('show');
+    });
+
+    // Cerrar el menú al hacer clic en cualquier enlace
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('show'); // Cierra el menú
+        });
+    });
+});

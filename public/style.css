@@ -42,141 +42,112 @@ body {
 
 
 
-/* Header Styles */
+
+/* Estilos generales del header */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 40px;
-    background: #001b48; /* Azul oscuro */
+    position: relative;
+    background-color: #001b48; /* Fondo oscuro */
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100; /* Asegura que el header esté por encima */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100; /* Asegura que el header esté por encima de otros elementos */
 }
 
 /* Logo */
-.logo img {
-    height: 80px; /* Tamaño del logo en pantallas grandes */
-    transition: height 0.3s ease; /* Transición para cambiar suavemente el tamaño */
+header .header-logo img {
+    max-width: 150px;
+    height: auto;
 }
 
-/* Botones de redes sociales */
-.social-icons {
+/* Iconos de redes sociales */
+.header-social-icons {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start; /* Alineación de los iconos de redes sociales */
-    margin-left: 15px; /* Espaciado entre el logo y las redes sociales */
+    flex-grow: 1;
 }
 
-.social-icon {
-    margin-left: 10px;
-    display: inline-block;
-    color: white; /* Color de los iconos */
+.header-social-icons .social-icon {
+    margin: 0 10px;
 }
 
-.social-icon svg {
-    fill: white; /* Color blanco para los iconos */
+.header-social-icons svg {
+    width: 30px; /* Ajusta el tamaño de los iconos */
     height: 30px;
-    width: 30px;
+    fill: white; /* Color blanco para los iconos */
 }
 
-/* Menú de navegación */
-nav {
+/* Botón del menú */
+.header-menu-toggle {
+    display: none; /* Se oculta en pantallas grandes */
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 102; /* Asegura que el botón esté por encima del menú */
+    padding: 10px; /* Añadir padding para hacerlo más clickeable */
+    position: absolute;
+    top: 20px; /* Ajusta la posición para evitar que se solape con el logo */
+    right: 20px; /* Ajusta el botón a la derecha */
+    width: 40px; /* Limita el área clickeable */
+    height: 40px; /* Limita el área clickeable */
+}
+
+/* Estilos del menú de navegación */
+.header-nav {
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-    z-index: 20; /* Asegura que el menú esté por encima de las redes sociales */
-    margin-top: 0; /* Eliminar cualquier margen que cause un espacio extra */
+    z-index: 101;
+    margin-top: 0;
 }
 
-/* Estilo de los enlaces */
-nav a {
-    font-size: 16px;
-    color: #fff;
+/* Cambios cuando el menú se despliega */
+.header-nav.show {
+    display: flex; /* Muestra el menú */
+}
+
+/* Enlaces dentro del menú */
+.header-nav a {
     text-decoration: none;
-    margin-left: 15px;
-    transition: 0.3s;
+    color: #fff;
+    padding: 10px;
 }
 
-/* Estilos del hover y active en los enlaces */
-nav a:hover,
-nav a.active {
-    color: #97cadb;
+/* Cambio de color cuando se pasa el ratón sobre los enlaces */
+.header-nav a:hover {
+    background-color: #333;
+    border-radius: 5px;
 }
 
-/* Responsivo para pantallas pequeñas (menos de 768px) */
+/* Estilos para pantallas pequeñas */
 @media (max-width: 768px) {
-    header {
-        flex-direction: row; /* Disposición en fila en pantallas pequeñas */
-        justify-content: space-between;
+    .header-menu-toggle {
+        display: block; /* Solo se muestra en pantallas pequeñas */
     }
 
-    .logo img {
-        height: 60px; /* Tamaño más pequeño para el logo en pantallas pequeñas */
-    }
-
-    .social-icons {
-        margin-left: 15px; /* Espaciado entre el logo y las redes sociales */
-    }
-
-    .menu-toggle {
-        display: block; /* Mostrar el botón para abrir el menú en pantallas pequeñas */
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 30px; /* Tamaño más grande para el botón */
-        cursor: pointer;
-        z-index: 101; /* Asegura que esté encima del menú */
-        padding: 0; /* Eliminar cualquier padding extra que cause tamaño innecesario */
+    .header-nav {
+        display: none; /* Mantiene el menú oculto por defecto */
         position: absolute;
-        top: 20px; /* Mover el botón hacia abajo para no estar justo al lado del logo */
-        right: 20px; /* Ajustar la posición a la derecha */
-    }
-
-    nav {
-        position: absolute;
-        top: 80px; /* Ajuste para evitar que el menú quede pegado al logo */
+        top: 80px;
         right: 0;
         background: #001b48;
         width: 100%;
         flex-direction: column;
         padding: 20px 0;
-        align-items: flex-end; /* Alineación de los enlaces a la derecha */
-        display: none; /* Escondido por defecto en pantallas pequeñas */
+        align-items: flex-start; /* Alinea los elementos hacia la izquierda */
     }
 
-    nav.show {
-        display: flex; /* Mostrar el menú cuando tiene la clase "show" */
+    .header-nav.show {
+        display: flex; /* Muestra el menú cuando tiene la clase "show" */
     }
 
-    nav a {
-        margin: 10px 20px; /* Espaciado entre enlaces */
-        font-size: 18px; /* Tamaño más grande para los enlaces */
-    }
-}
-
-/* Responsivo para pantallas muy pequeñas (menos de 480px) */
-@media (max-width: 480px) {
-    .logo img {
-        height: 50px; /* Logo aún más pequeño en pantallas muy pequeñas */
-    }
-
-    nav a {
-        font-size: 16px; /* Ajuste del tamaño de los enlaces */
-    }
-}
-
-/* Mostrar el menú siempre en pantallas grandes */
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none; /* Ocultar el botón en pantallas grandes */
-    }
-
-    nav {
-        display: flex; /* El menú se muestra de forma horizontal */
+    .header-nav a {
+        margin: 10px 20px;
+        font-size: 18px;
+        color: #fff; /* Asegura que los enlaces sean visibles */
     }
 }
 
@@ -194,19 +165,43 @@ nav a.active {
 
 /* Home Section */
 #home {
+    position: relative;
     min-height: 100vh; /* La sección cubre toda la altura de la ventana */
     margin-top: 80px; /* Asegura que no quede tapada por el header */
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #eef3ed; /* Fondo claro (puedes cambiar o eliminarlo si el GIF lo cubre completamente) */
+    background: #eef3ed; /* Fondo claro (puedes cambiar o eliminarlo si el video lo cubre completamente) */
+    overflow: hidden; /* Evita el desbordamiento si el video tiene un tamaño más grande que la sección */
 }
 
-#home .content img {
-    width: 100%; /* Asegura que el GIF ocupe todo el ancho */
-    height: 100%; /* Asegura que el GIF ocupe toda la altura */
-    object-fit: cover; /* Escala el GIF para cubrir toda la sección */
+/* Contenedor del video */
+#home .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Evita que se desborde el video */
 }
+
+/* Estilo del video */
+#home video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que el video cubra toda la sección, sin distorsionar */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    #home video {
+        object-position: center; /* Centra el video */
+    }
+}
+
 
 
 
