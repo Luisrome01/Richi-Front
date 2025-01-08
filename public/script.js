@@ -120,3 +120,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const reviewContainer = document.getElementById("carousel-review-container");
+    let reviews = [];
+    let currentIndex = 0;
+
+    // Fetch reviews from the API
+    async function fetchReviews() {
+        try {
+            const response = await fetch("http://localhost:5000/api/reviews");
+            reviews = await response.json();
+            displayReviews();
+        } catch (error) {
+            console.error("Error fetching reviews:", error);
+        }
+    }
+
+    // Display reviews dynamically
+    function displayReviews() {
+        reviewContainer.innerHTML = "";
+
+        const visibleReviews = reviews.slice(currentIndex, currentIndex + 3);
+        visibleReviews.forEach((review) => {
+            const reviewItem = document.createElement("div");
+            reviewItem.classList.add("carousel-review-item");
+            reviewItem.innerHTML = `
+                <h4>${review.name}</h4>
+                <div class="stars">${"★".repeat(review.rating) + "☆".repeat(5 - review.rating)}</div>
+                <p>${review.message}</p>
+                <small>${new Date(review.date).toLocaleDateString()}</small>
+            `;
+            reviewContainer.appendChild(reviewItem);
+        });
+    }
+
+    // Event listeners for navigation arrows
+    document.getElementById("carousel-prev-button").addEventListener("click", () => {
+        if (currentIndex > 0) {
+            currentIndex -= 3;
+            displayReviews();
+        }
+    });
+
+    document.getElementById("carousel-next-button").addEventListener("click", () => {
+        if (currentIndex + 3 < reviews.length) {
+            currentIndex += 3;
+            displayReviews();
+        }
+    });
+
+    // Initial fetch
+    fetchReviews();
+});
