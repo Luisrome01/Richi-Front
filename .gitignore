@@ -1,0 +1,13 @@
+# Environments
+.env
+.env.development
+
+# Dependency directories
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
