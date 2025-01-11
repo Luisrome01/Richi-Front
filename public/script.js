@@ -1,3 +1,27 @@
+const homeHoverEffect = document.querySelector('.home-content');
+
+homeHoverEffect.addEventListener('mousemove', (event) => {
+    const rect = homeHoverEffect.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width; // Coordenada X relativa
+    const y = (event.clientY - rect.top) / rect.height; // Coordenada Y relativa
+
+    // Ajusta los valores de rotación en función de la posición del cursor
+    const rotateX = (y - 0.5) * -10; // Inclinación vertical
+    const rotateY = (x - 0.5) * 10;  // Inclinación horizontal
+
+    // Actualiza las variables CSS para controlar la rotación
+    homeHoverEffect.style.setProperty('--home-rotateX', rotateX.toFixed(2));
+    homeHoverEffect.style.setProperty('--home-rotateY', rotateY.toFixed(2));
+});
+
+homeHoverEffect.addEventListener('mouseleave', () => {
+    // Resetea la rotación cuando el cursor sale del contenedor
+    homeHoverEffect.style.setProperty('--home-rotateX', 0);
+    homeHoverEffect.style.setProperty('--home-rotateY', 0);
+});
+
+
+
 // Obtener los elementos del formulario
 const form = document.getElementById('reviewForm');
 const stars = document.querySelectorAll('#rating .star');
@@ -97,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('show'); // Alternar la clase 'show' para mostrar/ocultar el menú
     });
-});
+}); 
 
 
 

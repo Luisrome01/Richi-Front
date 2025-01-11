@@ -55,20 +55,31 @@
 
     
     
-
     <section id="home">
-        <div class="content">
+        <div class="home-content hover-effect">
             <video autoplay loop muted>
                 <source src="/media/videorichi.mp4" type="video/mp4">
                 Tu navegador no soporta el formato de video.
             </video>
+            <div class="wave-separator">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 230" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="gradient1" x1="0" x2="0" y1="1" y2="0">
+                            <stop stop-color="rgba(0, 27, 72, 0.7)" offset="0%"></stop>
+                            <stop stop-color="rgba(151, 202, 219, 0.7)" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient id="gradient2" x1="0" x2="0" y1="1" y2="0">
+                            <stop stop-color="rgba(151, 202, 219, 0.5)" offset="0%"></stop>
+                            <stop stop-color="rgba(151, 202, 219, 0.5)" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#gradient1)" d="M0,184L21.8,176.3C43.6,169,87,153,131,126.5C174.5,100,218,61,262,57.5C305.5,54,349,84,393,84.3C436.4,84,480,54,524,53.7C567.3,54,611,84,655,80.5C698.2,77,742,38,785,19.2C829.1,0,873,0,916,0C960,0,1004,0,1047,11.5C1090.9,23,1135,46,1178,69C1221.8,92,1265,115,1309,107.3C1352.7,100,1396,61,1440,38.3L1440,230L0,230Z"></path>
+                    <path fill="url(#gradient2)" d="M0,138L21.8,138C43.6,138,87,138,131,138C174.5,138,218,138,262,126.5C305.5,115,349,92,393,69C436.4,46,480,23,524,11.5C567.3,0,611,0,655,26.8C698.2,54,742,107,785,118.8C829.1,130,873,100,916,84.3C960,69,1004,69,1047,72.8C1090.9,77,1135,84,1178,84.3C1221.8,84,1265,77,1309,84.3C1352.7,92,1396,115,1440,122.7L1440,230L0,230Z"></path>
+                </svg>
+            </div>
         </div>
     </section>
     
-    
-    
-    
-
     <section id="about-us">
         <div class="content">
             <h1>About Us</h1>
@@ -77,9 +88,10 @@
                 dedicate ourselves to creating unique tours with personalized and friendly service. We
                 believe that traveling is more than just visiting new places, it's about connecting with people
                 and with yourself. Scroll down to discover everything we have to offer!
-                </p>
+            </p>
         </div>
     </section>
+    
 
     <section id="services">
         <div class="content">

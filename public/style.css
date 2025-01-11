@@ -162,7 +162,6 @@ header .header-logo img {
 
 
 
-
 /* Home Section */
 #home {
     position: relative;
@@ -176,28 +175,35 @@ header .header-logo img {
 }
 
 /* Contenedor del video */
-#home .content {
+.home-content {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden; /* Evita que se desborde el video */
+    perspective: 1000px; /* Añade profundidad para el efecto de "hundimiento" */
 }
 
-/* Estilo del video */
-#home video {
+.home-content video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover; /* Hace que el video cubra toda la sección, sin distorsionar */
+    transition: transform 0.3s ease; /* Suaviza la transición al hacer hover */
+    transform-origin: center; /* Punto de origen para las transformaciones */
+}
+
+/* Efectos de transformación al hacer hover */
+.home-content:hover video {
+    transform: perspective(1000px) rotateX(calc(var(--home-rotateX) * 1deg)) rotateY(calc(var(--home-rotateY) * 1deg));
 }
 
 /* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
-    #home video {
+    .home-content video {
         object-position: center; /* Centra el video */
     }
 }
@@ -206,6 +212,18 @@ header .header-logo img {
 
 
 
+.wave-separator {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave-separator svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
 
 
@@ -230,6 +248,10 @@ header .header-logo img {
 #about-us .content p {
     font-size: 1rem;
 }
+
+
+
+
 
 /* Services Section */
 #services {
@@ -465,17 +487,17 @@ button:hover {
     padding-bottom: 15px;
 }
 
-/* Flechas a los lados */
+/* Flechas a los lados 
 .carousel-arrow {
     font-size: 2rem;
-    background-color: rgba(0, 27, 72, 0.8); /* Fondo semitransparente azul oscuro */
+    background-color: rgba(0, 27, 72, 0.8); 
     border: none;
     cursor: pointer;
     color: white;
     padding: 10px;
     position: absolute;
-    bottom: 50%; /* Asegura que estén centradas verticalmente */
-    transform: translateY(50%); /* Corrección de posición */
+    bottom: 50%; 
+    transform: translateY(50%); 
     z-index: 10;
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -490,8 +512,8 @@ button:hover {
 }
 
 .carousel-arrow:hover {
-    transform: translateY(50%) scale(1.2); /* Animación hover más suave */
-}
+    transform: translateY(50%) scale(1.2); 
+}*/
 
 /* Elemento de la reseña */
 .carousel-review-item {
