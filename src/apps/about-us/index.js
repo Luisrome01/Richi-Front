@@ -1,5 +1,5 @@
 import { VIDEO_EXAMPLE } from '../../utils/media';
-import styles from '../style.css?inline';
+import styles from '../../assets/style.css?inline';
 
 const css = new CSSStyleSheet();
 css.replaceSync(styles);
@@ -20,10 +20,10 @@ template.innerHTML = /*HTML*/ `
 
 /**
  * @description - Sección segundaria de la página.
- * @class - SecondSection
+ * @class - AboutUs
  * @extends HTMLElement
  */
-class SecondSection extends HTMLElement {
+class AboutUs extends HTMLElement {
 	constructor() {
 		super();
 		this.appendChild(template.content.cloneNode(true));
@@ -31,5 +31,5 @@ class SecondSection extends HTMLElement {
 	}
 }
 
-customElements.define('second-section', SecondSection);
-export default SecondSection;
+customElements.define('about-us', AboutUs);
+export default AboutUs;

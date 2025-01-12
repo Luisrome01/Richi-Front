@@ -56,10 +56,10 @@ template.innerHTML = /*HTML*/ `
 
 /**
  * @description - Sección principal de la página.
- * @class - FirstSection
+ * @class - Welcome
  * @extends HTMLElement
  */
-class FirstSection extends HTMLElement {
+class Welcome extends HTMLElement {
 	constructor() {
 		super();
 		this.appendChild(template.content.cloneNode(true));
@@ -67,5 +67,5 @@ class FirstSection extends HTMLElement {
 	}
 }
 
-customElements.define('first-section', FirstSection);
-export default FirstSection;
+customElements.define('welcome-page', Welcome);
+export default Welcome;

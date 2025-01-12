@@ -1,5 +1,5 @@
 import { VIDEO_EXAMPLE } from '../../utils/media';
-import styles from '../style.css?inline.css';
+import styles from '../../assets/style.css?inline';
 
 const css = new CSSStyleSheet();
 css.replaceSync(styles);
@@ -14,10 +14,10 @@ template.innerHTML = /*HTML*/ `
 
 /**
  * @description - Sección segundaria de la página.
- * @class - FiveSection
+ * @class - Photos
  * @extends HTMLElement
  */
-class FiveSection extends HTMLElement {
+class Photos extends HTMLElement {
 	constructor() {
 		super();
 		this.appendChild(template.content.cloneNode(true));
@@ -25,5 +25,5 @@ class FiveSection extends HTMLElement {
 	}
 }
 
-customElements.define('fifth-section', FiveSection);
-export default FiveSection;
+customElements.define('photos-page', Photos);
+export default Photos;

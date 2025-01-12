@@ -1,29 +1,29 @@
-import './apps/first-section/index.js';
-import './apps/second-section/index.js';
-import './apps/third-section/index.js';
-import './apps/fourth-section/index.js';
-import './apps/fifth-section/index.js';
-import './apps/sixth-section/index.js';
+import './apps/welcome/index.js';
+import './apps/about-us/index.js';
+import './apps/services/index.js';
+import './apps/contact-us/index.js';
+import './apps/photos/index.js';
+import './apps/reviews/index.js';
 
 const app = document.getElementById('app');
 
 app.innerHTML = /*HTML*/ `
   <section>
-    <first-section></first-section>
+    <welcome-page></welcome-page>
   </section>
   <section id="about-us">
-    <second-section></second-section>
+    <about-us></about-us>
   </section>
   <section id="services">
-    <third-section></third-section>
+    <services-page></services-page>
   </section>
   <section id="contact-us">
-    <fourth-section></fourth-section>
+    <contact-us></contact-us>
   </section>
   <section id="photos">
-    <fifth-section></fifth-section>
+    <photos-page></photos-page>
   </section>
   <section id="reviews">
-    <sixth-section></sixth-section>
+    <reviews-page></reviews-page>
   </section>
 `;

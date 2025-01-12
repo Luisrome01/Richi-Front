@@ -1,5 +1,5 @@
 import { VIDEO_EXAMPLE } from '../../utils/media';
-import styles from '../style.css?inline';
+import styles from '../../assets/style.css?inline';
 
 const css = new CSSStyleSheet();
 css.replaceSync(styles);
@@ -24,10 +24,10 @@ template.innerHTML = /*HTML*/ `
 
 /**
  * @description - Sección segundaria de la página.
- * @class - FourthSection
+ * @class - ContactUs
  * @extends HTMLElement
  */
-class FourthSection extends HTMLElement {
+class ContactUs extends HTMLElement {
 	constructor() {
 		super();
 		this.appendChild(template.content.cloneNode(true));
@@ -35,5 +35,5 @@ class FourthSection extends HTMLElement {
 	}
 }
 
-customElements.define('fourth-section', FourthSection);
-export default FourthSection;
+customElements.define('contact-us', ContactUs);
+export default ContactUs;

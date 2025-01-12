@@ -1,5 +1,5 @@
 import { VIDEO_EXAMPLE } from '../../utils/media';
-import styles from '../style.css?inline.css';
+import styles from '../../assets/style.css?inline';
 
 const css = new CSSStyleSheet();
 css.replaceSync(styles);
@@ -56,10 +56,10 @@ template.innerHTML = /*HTML*/ `
 
 /**
  * @description - Sección segundaria de la página.
- * @class - SixthSection
+ * @class - Reviews
  * @extends HTMLElement
  */
-class SixthSection extends HTMLElement {
+class Reviews extends HTMLElement {
 	constructor() {
 		super();
 		this.appendChild(template.content.cloneNode(true));
@@ -67,5 +67,5 @@ class SixthSection extends HTMLElement {
 	}
 }
 
-customElements.define('sixth-section', SixthSection);
-export default SixthSection;
+customElements.define('reviews-page', Reviews);
+export default Reviews;
