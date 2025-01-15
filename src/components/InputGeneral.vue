@@ -20,11 +20,13 @@ export default {
 
 <style scoped>
 .input-general {
+  width: 349px;
+  height: 64px;
   border: 1.5px solid #bebebe;
   border-radius: 100px;
   background: transparent;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 18px;
   color: #292b2e;
   outline: none;
 }
