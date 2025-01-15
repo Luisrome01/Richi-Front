@@ -37,7 +37,7 @@ import { LOGO_PNG, ARROW_DIAGONAL } from '@/utils/media'
     rgba(0, 0, 0, 0.25) 48%,
     rgba(0, 0, 0, 0) 100%
   );
-  z-index: 1;
+  z-index: 9;
 }
 
 .menu-container {
@@ -48,7 +48,7 @@ import { LOGO_PNG, ARROW_DIAGONAL } from '@/utils/media'
   justify-content: space-between;
   width: 100%;
   padding: 35px 44px;
-  z-index: 5;
+  z-index: 10;
 }
 
 img {
