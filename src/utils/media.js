@@ -15,6 +15,7 @@ export const CAVE = `${VITE_IMAGES_ROUTE}cave-pool.jpg`
 export const CHAPEL = `${VITE_IMAGES_ROUTE}alto-vista.jpg`
 export const LIGHTHOUSE = `${VITE_IMAGES_ROUTE}california.jpg`
 export const LINE = `${VITE_IMAGES_ROUTE}dotted-line.svg`
+export const CLOSE = `${VITE_IMAGES_ROUTE}close.svg`
 
 export const mediaMap = {
   LOGO_PNG,
@@ -31,4 +32,5 @@ export const mediaMap = {
   CAVE,
   CHAPEL,
   LIGHTHOUSE,
+  CLOSE,
 }
