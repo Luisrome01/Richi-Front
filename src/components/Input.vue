@@ -1,15 +1,31 @@
 <template>
-	<input :placeholder="placeholder" class="input" v-bind="$attrs" />
+	<input
+		:placeholder="placeholder"
+		:class="['input', $attrs.class]"
+		v-bind="inputAttrs"
+		v-model="modelValue"
+	/>
 </template>
 
 <script>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits, computed } from 'vue';
 
 defineProps({
+	modelValue: {
+		type: String,
+		default: '',
+	},
 	placeholder: {
 		type: String,
 		default: '',
 	},
+});
+
+defineEmits(['update:modelValue']);
+
+const inputAttrs = computed(() => {
+	// Filtramos atributos no relevantes para evitar conflictos.
+	return { ...$attrs, class: undefined };
 });
 </script>
 

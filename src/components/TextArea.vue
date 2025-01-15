@@ -1,15 +1,31 @@
 <template>
-	<textarea :placeholder="placeholder" class="text-area" v-bind="$attrs"></textarea>
+	<textarea
+		:placeholder="placeholder"
+		:class="['text-area', $attrs.class]"
+		v-bind="textAreaAttrs"
+		v-model="modelValue"
+	></textarea>
 </template>
 
 <script>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits, computed } from 'vue';
 
 defineProps({
+	modelValue: {
+		type: String,
+		default: '',
+	},
 	placeholder: {
 		type: String,
 		default: '',
 	},
+});
+
+defineEmits(['update:modelValue']);
+
+const textAreaAttrs = computed(() => {
+	// Filtramos atributos no relevantes para evitar conflictos.
+	return { ...$attrs, class: undefined };
 });
 </script>
 
