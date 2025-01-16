@@ -1,73 +1,69 @@
 <template>
-	<div class="tours-container">
-		<div class="slide-1">
-			<div class="header">
-				<div class="text-container">
-					<div class="title">ATV Single Tour</div>
-					<div class="title">Information</div>
-					<div class="highlight"></div>
-				</div>
-				<div class="specifics">
-					<div class="section">
-						<img :src="DURATION" alt="Clock" />
-						<div class="section-text">
-							<div class="name">Duration</div>
-							<div class="quantity">4 hours</div>
-						</div>
-					</div>
-					<div class="section">
-						<img :src="CAR" alt="Clock" />
-						<div class="section-text">
-							<div class="name">Departure times</div>
-							<div class="quantity">9:00 AM - 12:30 PM</div>
-							<div class="quantity">2:00 PM - 5:30 PM</div>
-						</div>
-					</div>
-				</div>
-				<div class="section">
-					<img :src="LIST" alt="Clock" />
-					<div class="section-text">
-						<div class="name">Requirements</div>
-						<div class="quantity">Drivers License</div>
-						<div class="quantity">Tennis shoes</div>
-						<div class="quantity">Swimsuit</div>
-						<div class="quantity">& Good vibes!</div>
-					</div>
-				</div>
-				<div class="price-container">
-					<div class="context">All for the following price:</div>
-					<div class="context price">$150 USD</div>
-					<div class="redirect">
-						<div class="subtitle">Book now</div>
-						<img :src="ARROW_DIAGONAL" alt="Arrow" />
-					</div>
+	<div class="header">
+		<div class="text-container">
+			<div class="title">ATV Single Tour</div>
+			<div class="title">Information</div>
+			<div class="highlight"></div>
+		</div>
+		<div class="specifics">
+			<div class="section">
+				<img :src="DURATION" alt="Clock" />
+				<div class="section-text">
+					<div class="name">Duration</div>
+					<div class="quantity">4 hours</div>
 				</div>
 			</div>
-			<div class="description">
-				Explore Aruba's beauty and history with our <span class="highlighted">guided tour</span>, featuring iconic <span class="highlighted">attractions</span> like the Bushiribana Gold Mill Ruins, the serene Cave Pool, the picturesque Baby Natural
-				Bridge, the historic Alto Vista Chapel, the majestic California Lighthouse, and the cultural gem Tres Tapi. Experience the best of the island in one unforgettable journey!
-			</div>
-			<div class="image-container">
-				<img :src="VEHICLE" alt="ATV" />
-			</div>
-			<div class="place-container">
-				<div class="place first">
-					<div class="place-name">Cave Pool</div>
-					<img :src="CAVE" alt="Cave Pool" />
+			<div class="section">
+				<img :src="CAR" alt="Clock" />
+				<div class="section-text">
+					<div class="name">Departure times</div>
+					<div class="quantity">9:00 AM - 12:30 PM</div>
+					<div class="quantity">2:00 PM - 5:30 PM</div>
 				</div>
-				<div class="place second">
-					<div class="place-name">Alto Vista Chapel</div>
-					<img :src="CHAPEL" alt="Alto Vista Chapel" />
-				</div>
-				<div class="place third">
-					<div class="place-name">California Lighthouse</div>
-					<img :src="LIGHTHOUSE" alt="California Lighthouse" />
-				</div>
-			</div>
-			<div class="line-container">
-				<img :src="LINE" alt="Line" />
 			</div>
 		</div>
+		<div class="section">
+			<img :src="LIST" alt="Clock" />
+			<div class="section-text">
+				<div class="name">Requirements</div>
+				<div class="quantity">Drivers License</div>
+				<div class="quantity">Tennis shoes</div>
+				<div class="quantity">Swimsuit</div>
+				<div class="quantity">& Good vibes!</div>
+			</div>
+		</div>
+		<div class="price-container">
+			<div class="context">All for the following price:</div>
+			<div class="context price">$150 USD</div>
+			<div class="redirect">
+				<div class="subtitle">Book now</div>
+				<img :src="ARROW_DIAGONAL" alt="Arrow" />
+			</div>
+		</div>
+	</div>
+	<div class="description">
+		Explore Aruba's beauty and history with our <span class="highlighted">guided tour</span>, featuring iconic <span class="highlighted">attractions</span> like the Bushiribana Gold Mill Ruins, the serene Cave Pool, the picturesque Baby Natural
+		Bridge, the historic Alto Vista Chapel, the majestic California Lighthouse, and the cultural gem Tres Tapi. Experience the best of the island in one unforgettable journey!
+	</div>
+	<div class="image-container">
+		<img :src="VEHICLE" alt="ATV" />
+	</div>
+	<div class="place-container">
+		<div class="place first">
+			<div class="place-name">Cave Pool</div>
+			<img :src="CAVE" alt="Cave Pool" />
+		</div>
+		<div class="place second">
+			<div class="place-name">Alto Vista Chapel</div>
+			<img :src="CHAPEL" alt="Alto Vista Chapel" />
+		</div>
+		<div class="place third">
+			<div class="place-name">California Lighthouse</div>
+			<img :src="LIGHTHOUSE" alt="California Lighthouse" />
+		</div>
+	</div>
+	<div class="line-container">
+		<img :src="LINE" alt="Line" />
 	</div>
 </template>
 
@@ -76,30 +72,10 @@ import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, CAVE, CHAPEL, LIGHTHOUSE,
 </script>
 
 <style scoped>
-.tours-container {
-	width: 100%;
-	height: 100vh;
-	padding: 33px;
-}
-
-.slide-1 {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	width: 100%;
-	height: 592px;
-	background: #f1f1f1;
-	border-radius: 50px;
-	padding: 50px;
-	gap: 50px;
-	z-index: 5;
-}
-
 .header {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	/* gap: 90px; */
 }
 
 .text-container {
@@ -123,7 +99,6 @@ import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, CAVE, CHAPEL, LIGHTHOUSE,
 	position: relative;
 	width: 283px;
 	height: 50px;
-	/* left: 77px; */
 	top: -45px;
 	background: #ffffff;
 	border-radius: 50px;
@@ -195,13 +170,6 @@ import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, CAVE, CHAPEL, LIGHTHOUSE,
 	width: 396px;
 	height: 135px;
 	background: #005c99;
-	/* box-shadow:
-    1px 1px 2px rgba(0, 101, 168, 0.3),
-    -1px -1px 2px rgba(0, 83, 138, 0.5),
-    inset -5px 5px 10px rgba(0, 83, 138, 0.2),
-    inset 5px -5px 10px rgba(0, 83, 138, 0.2),
-    inset -5px -5px 10px rgba(0, 101, 168, 0.9),
-    inset 5px 5px 13px rgba(0, 83, 138, 0.9); */
 	padding: 25px;
 	border-radius: 31px;
 }
