@@ -17,6 +17,10 @@ export const CHAPEL = `${VITE_IMAGES_ROUTE}alto-vista.jpg`;
 export const LIGHTHOUSE = `${VITE_IMAGES_ROUTE}california.jpg`;
 export const LINE = `${VITE_IMAGES_ROUTE}dotted-line.svg`;
 export const CLOSE = `${VITE_IMAGES_ROUTE}close.svg`;
+export const EMAIL = `${VITE_IMAGES_ROUTE}email.svg`;
+export const MESSAGE = `${VITE_IMAGES_ROUTE}message.svg`;
+export const FACEBOOK = `${VITE_IMAGES_ROUTE}facebook.svg`;
+export const INSTAGRAM = `${VITE_IMAGES_ROUTE}instagram.svg`;
 
 export const mediaMap = {
 	LOGO_PNG,
@@ -35,4 +39,6 @@ export const mediaMap = {
 	CHAPEL,
 	LIGHTHOUSE,
 	CLOSE,
+	EMAIL,
+	MESSAGE,
 };
