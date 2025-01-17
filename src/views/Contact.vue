@@ -121,7 +121,7 @@
 
 <script setup>
 import { Input, TextArea, ArrowButton } from '@/components';
-import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM } from '@/utils/media';
+import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM, QR_IMAGE } from '@/utils/media';
 
 const submitForm = () => {
 	const form = document.querySelector('form');
