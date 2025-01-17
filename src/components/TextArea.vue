@@ -33,7 +33,6 @@ const textAreaAttrs = computed(() => {
 .text-area {
 	display: flex;
 	align-items: flex-start;
-	max-width: 732px;
 	height: 138px;
 	border: 1.5px solid #bebebe;
 	border-radius: 30px;

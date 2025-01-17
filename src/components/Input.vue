@@ -31,7 +31,6 @@ const inputAttrs = computed(() => {
 
 <style scoped>
 .input {
-	max-width: 349px;
 	height: 64px;
 	padding: 10px 20px;
 	border: 1.5px solid #bebebe;
