@@ -2,46 +2,32 @@
 	<div class="review-container">
 		<div class="highlight"></div>
 		<div class="title">What our clients say about us</div>
-		<ArrowButton
-			class="create-review-button"
-			@click="openModal"
-			subtitle="Create Review"
-			:arrowImage="ARROW_DIAGONAL"
-		/>
-		<Modal
-			v-model="showModal"
-			title="Create review"
-			description="Share your experience with us! Fill out the form below to leave a review of your unforgettable Aruba adventure."
-		>
+		<ArrowButton class="create-review-button" @click="openModal" subtitle="Add your review" :arrowImage="ARROW_DIAGONAL" />
+		<Modal v-model="showModal" title="Create review" description="Share your experience with us! Fill out the form below to leave a review of your unforgettable Aruba adventure.">
 			<div class="content">
-				<div class="form-row">
-					<div class="form-group">
-						<label for="name">Name and Last Name</label>
-						<Input id="name" v-model="formData.name" placeholder="Name and Last Name" />
+				<div class="form">
+					<div class="section">
+						<div class="combined">
+							<div class="label">First Name</div>
+							<Input placeholder="Enter your first name" />
+						</div>
+						<div class="combined">
+							<div class="label">Last Name</div>
+							<Input placeholder="Enter your last name" />
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="email">Email</label>
-						<Input id="email" v-model="formData.email" placeholder="Email" />
+					<div class="combined">
+						<div class="label">Description</div>
+						<TextArea placeholder="Enter your review" v-model="formData.message" />
+					</div>
+					<div class="combined">
+						<div class="label">Rating</div>
+						<div class="star-rating">
+							<span v-for="star in 5" :key="star" class="star" :class="{ selected: star <= formData.rating }" @click="setRating(star)"> ★ </span>
+						</div>
 					</div>
 				</div>
-				<TextArea v-model="formData.message" placeholder="Enter your message..." />
-				<div class="star-rating">
-					<span
-						v-for="star in 5"
-						:key="star"
-						class="star"
-						:class="{ selected: star <= formData.rating }"
-						@click="setRating(star)"
-					>
-						★
-					</span>
-				</div>
-				<ArrowButton
-					class="right-arrow-button"
-					subtitle="Crear Reseña"
-					:arrowImage="ARROW_DIAGONAL"
-					@click="submitReview"
-				/>
+				<ArrowButton class="right-arrow-button" subtitle="Post your review" :arrowImage="ARROW_DIAGONAL" @click="submitReview" />
 				<div v-if="successMessage" class="success-message">{{ successMessage }}</div>
 			</div>
 		</Modal>
@@ -101,13 +87,11 @@ const submitReview = async () => {
 			successMessage.value = 'Review created successfully!';
 			formData.value = { name: '', email: '', message: '', rating: 0 };
 			setTimeout(() => {
-				showModal.value = false; // Cierra el modal tras éxito
+				showModal.value = false;
 			}, 1000);
 		} else {
 			const errorData = await response.json();
-			throw new Error(
-				`Failed to create review: ${errorData.message || response.statusText}`
-			);
+			throw new Error(`Failed to create review: ${errorData.message || response.statusText}`);
 		}
 	} catch (error) {
 		successMessage.value = `Error: ${error.message}`;
@@ -117,7 +101,6 @@ const submitReview = async () => {
 </script>
 
 <style scoped>
-/* Estilos de la pantalla principal */
 .review-container {
 	display: flex;
 	justify-content: center;
@@ -156,8 +139,6 @@ const submitReview = async () => {
 	cursor: pointer;
 }
 
-/* Estilos del modal */
-
 .content {
 	display: flex;
 	flex-direction: column;
@@ -165,58 +146,61 @@ const submitReview = async () => {
 	margin-top: 20px;
 }
 
-.form-row {
+.form {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	gap: 20px;
 }
 
-.form-group {
+.section {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	width: 100%;
+	gap: 30px;
+}
+
+.combined {
 	display: flex;
 	flex-direction: column;
-	width: 48%;
-}
-
-label {
-	font-style: normal;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 19px;
-	color: #292B2E;
-	margin-bottom: 8px;
-}
-
-input, .TextArea {
 	width: 100%;
+	gap: 10px;
+}
+
+.label {
+	font-family: 'Stolzl Medium';
+	font-size: 16px;
+	color: #292b2e;
 }
 
 .right-arrow-button {
 	align-self: flex-end;
-	margin-top: 20px;
 }
 
 .star-rating {
 	display: flex;
+	justify-content: flex-start;
 	gap: 10px;
-	justify-content: center;
-	margin-top: 10px;
 }
 
 .star {
-	font-size: 24px;
-	color: #292B2E80;
+	line-height: 30px;
+	font-size: 30px;
+	color: #292b2e80;
 	cursor: pointer;
 	transition: color 0.3s ease;
 }
 
 .star.selected {
-	color: #005C99;
+	color: #005c99;
 }
 
 .success-message {
-	margin-top: 10px;
-	color: #005C99;
+	font-family: 'Stolzl Regular';
 	font-size: 16px;
 	text-align: center;
+	margin-top: 10px;
+	color: #005c99;
 }
 </style>
