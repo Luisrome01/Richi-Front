@@ -108,10 +108,11 @@ watch(
 	font-family: 'Stolzl Regular';
 	font-size: 15px;
 	color: #292b2e;
+    padding-right: 50px;
 	margin-top: 5px;
 }
 
 .modal-body {
-	margin-top: 40px;
+	margin-top: 15px;
 }
 </style>
