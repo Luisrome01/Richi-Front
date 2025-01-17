@@ -1,11 +1,13 @@
 <template>
-	<div class="redirect">
+	<div class="redirect" @click="handleClick">
 		<div class="subtitle">{{ subtitle }}</div>
 		<img :src="arrowImage" alt="Arrow" />
 	</div>
 </template>
 
 <script setup>
+import { defineProps, defineEmits } from "vue";
+
 defineProps({
 	subtitle: {
 		type: String,
@@ -16,6 +18,12 @@ defineProps({
 		required: true,
 	},
 });
+
+const emit = defineEmits(["submit"]);
+
+const handleClick = () => {
+	emit("submit");
+};
 </script>
 
 <style scoped>
