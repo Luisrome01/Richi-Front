@@ -2,7 +2,24 @@
 	<div class="review-container">
 		<div class="highlight"></div>
 		<div class="title">What our clients say about us</div>
-		<ArrowButton class="create-review-button" @click="openModal" subtitle="Add your review" :arrowImage="ARROW_DIAGONAL" />
+		<div class="slider-container">
+			<Slider :step="currentStep">
+				<div v-if="currentStep === 1" class="reviews">
+					<Review v-for="review in firstPage" :rating="review.rating" :name="review.name" :description="review.description" :date="review.date" :key="review.id" />
+				</div>
+				<div v-else-if="currentStep === 2" class="reviews">
+					<Review v-for="review in secondPage" :rating="review.rating" :name="review.name" :description="review.description" :date="review.date" :key="review.id" />
+				</div>
+				<div v-else class="reviews">
+					<Review v-for="review in thirdPage" :rating="review.rating" :name="review.name" :description="review.description" :date="review.date" :key="review.id" />
+				</div>
+			</Slider>
+			<SliderControl :step="currentStep" :totalSteps="totalSteps" @setStep="currentStep = $event">
+				<div class="create-review-button">
+					<ArrowButton @click="openModal" subtitle="Add your review" :arrowImage="ARROW_DIAGONAL" />
+				</div>
+			</SliderControl>
+		</div>
 		<Modal v-model="showModal" title="Create review" description="Share your experience with us! Fill out the form below to leave a review of your unforgettable Aruba adventure.">
 			<div class="content">
 				<div class="form">
@@ -35,10 +52,61 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Input, TextArea, ArrowButton, Modal } from '@/components';
+import { ref, computed, onMounted } from 'vue';
+import { Input, TextArea, ArrowButton, Modal, Slider, SliderControl, Review } from '@/components';
 import { ARROW_DIAGONAL } from '@/utils/media';
 
+const reviews = ref([
+	{ id: 1, name: 'John Doe', rating: 5, description: 'Amazing experience!', date: '2021-10-01' },
+	{ id: 2, name: 'Jane Smith', rating: 4, description: 'Beautiful place, great service!', date: '2021-11-15' },
+	{ id: 3, name: 'Alex Johnson', rating: 5, description: 'Absolutely loved it! Highly recommend.', date: '2022-02-20' },
+	{ id: 4, name: 'Emily Davis', rating: 3, description: 'It was okay, but could be better.', date: '2022-03-05' },
+	{ id: 5, name: 'Michael Brown', rating: 4, description: 'Great value for the price!', date: '2022-04-12' },
+	{ id: 6, name: 'Sarah Wilson', rating: 5, description: 'A trip I will never forget!', date: '2022-05-30' },
+	{ id: 7, name: 'David Martinez', rating: 4, description: 'Nice experience, but a bit crowded.', date: '2022-06-10' },
+	{ id: 8, name: 'Sophia Garcia', rating: 5, description: 'Perfect getaway destination!', date: '2022-07-22' },
+	{ id: 9, name: 'Chris Lee', rating: 3, description: 'Average experience, but the staff were friendly.', date: '2022-08-18' },
+	{ id: 10, name: 'Emma Thompson', rating: 5, description: 'Exceeded all my expectations!', date: '2022-09-04' },
+	{ id: 11, name: 'Daniel White', rating: 4, description: 'Wonderful place, would visit again.', date: '2022-10-09' },
+]);
+
+const currentStep = ref(1);
+const reviewsPerPage = 6;
+
+const firstPage = ref([]);
+const secondPage = ref([]);
+const thirdPage = ref([]);
+
+/**
+ * Distribuye las reselñas en las páginas correspondientes, según la calificación y la fecha.
+ */
+const distributeReviews = () => {
+	const sortedReviews = [...reviews.value].sort((a, b) => {
+		if (b.rating === a.rating) {
+			return new Date(b.date) - new Date(a.date);
+		}
+		return b.rating - a.rating;
+	});
+
+	firstPage.value = sortedReviews.slice(0, reviewsPerPage);
+	secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
+	thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
+};
+
+/**
+ * Calcula el número total de pasos en el slider.
+ */
+const totalSteps = computed(() => {
+	let steps = 0;
+	if (firstPage.value.length > 0) steps += 1;
+	if (secondPage.value.length > 0) steps += 1;
+	if (thirdPage.value.length > 0) steps += 1;
+	return steps;
+});
+
+/**
+ * Constantes reactivas para el modal de creación de reseñas.
+ */
 const showModal = ref(false);
 const successMessage = ref('');
 const formData = ref({
@@ -48,21 +116,36 @@ const formData = ref({
 	rating: 0,
 });
 
+/**
+ * Muestra el modal de creación de reseñas.
+ */
 const openModal = () => {
 	showModal.value = true;
 	successMessage.value = '';
 };
 
+/**
+ * Establece la calificación de la reseña.
+ * @param {number} star - La calificación de la reseña.
+ */
 const setRating = (star) => {
 	formData.value.rating = star;
 	console.log(`${star} estrella${star > 1 ? 's' : ''} seleccionada`);
 };
 
+/**
+ * Valida el formato del correo electrónico.
+ * @param {string} email - El correo electrónico a validar.
+ * @returns {boolean} - Verdadero si el correo electrónico es válido, falso en caso contrario.
+ */
 const validateEmail = (email) => {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return emailRegex.test(email);
 };
 
+/**
+ * Realiza una solicitud de red para crear una reseña.
+ */
 const submitReview = async () => {
 	if (!formData.value.name || !formData.value.email || !formData.value.message) {
 		successMessage.value = 'All fields are required!';
@@ -98,14 +181,20 @@ const submitReview = async () => {
 		console.error('Error creating review:', error);
 	}
 };
+
+onMounted(() => {
+	distributeReviews();
+});
 </script>
 
 <style scoped>
 .review-container {
 	display: flex;
-	justify-content: center;
-	height: 100vh;
-	padding: 33px;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: fit-content;
+	padding: 60px 33px;
 }
 
 .highlight {
@@ -130,13 +219,24 @@ const submitReview = async () => {
 	color: #005c99;
 }
 
+.slider-container {
+	overflow: hidden;
+}
+
+.reviews {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 100%;
+	height: 100%;
+	grid-gap: 20px;
+	padding-top: 90px;
+	padding-bottom: 45px;
+}
+
 .create-review-button {
-	position: absolute;
-	width: 199px;
-	height: 42px;
-	left: 1180px;
-	top: 4023px;
-	cursor: pointer;
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
 }
 
 .content {
