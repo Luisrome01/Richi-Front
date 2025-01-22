@@ -21,6 +21,7 @@ export const EMAIL = `${VITE_IMAGES_ROUTE}email.svg`;
 export const MESSAGE = `${VITE_IMAGES_ROUTE}message.svg`;
 export const FACEBOOK = `${VITE_IMAGES_ROUTE}facebook.svg`;
 export const INSTAGRAM = `${VITE_IMAGES_ROUTE}instagram.svg`;
+export const QR_IMAGE = `${VITE_IMAGES_ROUTE}qr.jpg`;
 
 export const mediaMap = {
 	LOGO_PNG,
@@ -41,4 +42,7 @@ export const mediaMap = {
 	CLOSE,
 	EMAIL,
 	MESSAGE,
+	FACEBOOK,
+	INSTAGRAM,
+	QR_IMAGE,
 };

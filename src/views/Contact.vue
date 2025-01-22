@@ -4,37 +4,70 @@
 			<div class="form-container">
 				<div>
 					<div class="section-name">Contact us</div>
-					<div class="description">Have questions or ready to book your unforgettable Aruba adventure? Fill out the form below:</div>
+					<div class="description">
+						Have questions or ready to book your unforgettable Aruba adventure? Fill out the form below:
+					</div>
 				</div>
-				<div class="connect-details">
+				<form
+					ref="contactForm"
+					action="https://formsubmit.co/luisrome3005@gmail.com"
+					method="POST"
+					class="connect-details"
+				>
 					<div class="section">
 						<div class="combined">
 							<div class="label">First Name</div>
-							<Input placeholder="Enter your first name" />
+							<Input
+								name="first_name"
+								placeholder="Enter your first name"
+								required
+							/>
 						</div>
 						<div class="combined">
 							<div class="label">Last Name</div>
-							<Input placeholder="Enter your last name" />
+							<Input
+								name="last_name"
+								placeholder="Enter your last name"
+								required
+							/>
 						</div>
 					</div>
 					<div class="section">
 						<div class="combined">
 							<div class="label">Email</div>
-							<Input placeholder="Enter your email" />
+							<Input
+								type="email"
+								name="email"
+								placeholder="Enter your email"
+								required
+							/>
 						</div>
 						<div class="combined">
 							<div class="label">Phone Number</div>
-							<Input placeholder="Enter your phone number" />
+							<Input
+								name="phone_number"
+								placeholder="Enter your phone number"
+							/>
 						</div>
 					</div>
 					<div class="combined">
 						<div class="label">Message</div>
-						<TextArea placeholder="Enter your message" />
+						<TextArea
+							name="message"
+							placeholder="Enter your message"
+							required
+						/>
 					</div>
-				</div>
-				<div class="send-button">
-					<ArrowButton subtitle="Send a message" :arrowImage="ARROW_DIAGONAL" />
-				</div>
+					<div class="send-button">
+						<ArrowButton
+							subtitle="Send a message"
+							:arrowImage="ARROW_DIAGONAL"
+							@click="submitForm"
+						/>
+            <input type="hidden" name="_next" value="http://localhost:5173/">
+            <input type="hidden" name="_captcha" value="false">
+					</div>
+				</form>
 			</div>
 			<div class="info-container">
 				<div class="title">Hi! We are always here to help you.</div>
@@ -54,7 +87,7 @@
 						</div>
 					</div>
 					<div class="option">
-						<!-- <img :src="" alt="Code" /> -->
+            <img :src="QR_IMAGE" alt="QR" />
 						<div class="option-details">
 							<div class="name">QR Code</div>
 							<div class="value">Scan this to start a new chat</div>
@@ -65,8 +98,20 @@
 				<div class="connect-details">
 					<div class="subtitle">Connect with us</div>
 					<div class="buttons">
-						<img :src="FACEBOOK" alt="Facebook" />
-						<img :src="INSTAGRAM" alt="Instagram" />
+						<a
+							:href="'https://www.facebook.com/share/fCbEgPQg1PgBzrKk/?mibextid=LQQJ4d'"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img :src="FACEBOOK" alt="Facebook" />
+						</a>
+						<a
+							:href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img :src="INSTAGRAM" alt="Instagram" />
+						</a>
 					</div>
 				</div>
 			</div>
@@ -76,7 +121,14 @@
 
 <script setup>
 import { Input, TextArea, ArrowButton } from '@/components';
-import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM } from '@/utils/media';
+import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM, QR_IMAGE } from '@/utils/media';
+
+const submitForm = () => {
+	const form = document.querySelector('form');
+	if (form) {
+		form.submit(); // Trigger the form submission
+	}
+};
 </script>
 
 <style scoped>
