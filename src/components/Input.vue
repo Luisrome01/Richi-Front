@@ -1,14 +1,9 @@
 <template>
-	<input
-		:placeholder="placeholder"
-		:class="['input', $attrs.class]"
-		v-bind="inputAttrs"
-		v-model="modelValue"
-	/>
+	<input :placeholder="placeholder" :class="['input', attrs.class]" v-bind="inputAttrs" :value="modelValue" @input="onInput" />
 </template>
 
-<script>
-import { defineProps, defineEmits, computed } from 'vue';
+<script setup>
+import { defineProps, defineEmits, computed, useAttrs } from 'vue';
 
 defineProps({
 	modelValue: {
@@ -23,10 +18,18 @@ defineProps({
 
 defineEmits(['update:modelValue']);
 
+const attrs = useAttrs();
+
 const inputAttrs = computed(() => {
-	// Filtramos atributos no relevantes para evitar conflictos.
-	return { ...$attrs, class: undefined };
+	return { ...attrs, class: undefined };
 });
+
+/**
+ * Emite un evento para actualizar el valor del modelo.
+ */
+const onInput = (event) => {
+	emit('update:modelValue', event.target.value);
+};
 </script>
 
 <style scoped>
