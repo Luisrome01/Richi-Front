@@ -56,20 +56,7 @@ import { ref, computed, onMounted } from 'vue';
 import { Input, TextArea, ArrowButton, Modal, Slider, SliderControl, Review } from '@/components';
 import { ARROW_DIAGONAL } from '@/utils/media';
 
-const reviews = ref([
-	{ id: 1, name: 'John Doe', rating: 5, description: 'Amazing experience!', date: '2021-10-01' },
-	{ id: 2, name: 'Jane Smith', rating: 4, description: 'Beautiful place, great service!', date: '2021-11-15' },
-	{ id: 3, name: 'Alex Johnson', rating: 5, description: 'Absolutely loved it! Highly recommend.', date: '2022-02-20' },
-	{ id: 4, name: 'Emily Davis', rating: 3, description: 'It was okay, but could be better.', date: '2022-03-05' },
-	{ id: 5, name: 'Michael Brown', rating: 4, description: 'Great value for the price!', date: '2022-04-12' },
-	{ id: 6, name: 'Sarah Wilson', rating: 5, description: 'A trip I will never forget!', date: '2022-05-30' },
-	{ id: 7, name: 'David Martinez', rating: 4, description: 'Nice experience, but a bit crowded.', date: '2022-06-10' },
-	{ id: 8, name: 'Sophia Garcia', rating: 5, description: 'Perfect getaway destination!', date: '2022-07-22' },
-	{ id: 9, name: 'Chris Lee', rating: 3, description: 'Average experience, but the staff were friendly.', date: '2022-08-18' },
-	{ id: 10, name: 'Emma Thompson', rating: 5, description: 'Exceeded all my expectations!', date: '2022-09-04' },
-	{ id: 11, name: 'Daniel White', rating: 4, description: 'Wonderful place, would visit again.', date: '2022-10-09' },
-]);
-
+const reviews = ref([]); // Aquí se almacenarán las reseñas cargadas del backend.
 const currentStep = ref(1);
 const reviewsPerPage = 6;
 
@@ -77,20 +64,36 @@ const firstPage = ref([]);
 const secondPage = ref([]);
 const thirdPage = ref([]);
 
-/**
- * Distribuye las reselñas en las páginas correspondientes, según la calificación y la fecha.
- */
-const distributeReviews = () => {
-	const sortedReviews = [...reviews.value].sort((a, b) => {
-		if (b.rating === a.rating) {
-			return new Date(b.date) - new Date(a.date);
-		}
-		return b.rating - a.rating;
-	});
+const distributeReviews = async () => {
+  try {
+    const response = await fetch('http://localhost:5000/api/reviews');
+    const data = await response.json();
 
-	firstPage.value = sortedReviews.slice(0, reviewsPerPage);
-	secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
-	thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
+    // Función para formatear la fecha
+    const formatDate = (isoDate) => {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' }; // Ejemplo: "Jan 15, 2025"
+      return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
+    };
+
+    // Mapear datos con fecha formateada
+    const sortedReviews = data.map((review) => ({
+      name: review.name,
+      rating: review.rating,
+      description: review.message, // Mapear `message` a `description`
+      date: formatDate(review.date), // Formatear la fecha
+    })).sort((a, b) => {
+      if (b.rating === a.rating) {
+        return new Date(b.date) - new Date(a.date);
+      }
+      return b.rating - a.rating;
+    });
+
+    firstPage.value = sortedReviews.slice(0, reviewsPerPage);
+    secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
+    thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+  }
 };
 
 /**
@@ -134,13 +137,17 @@ const setRating = (star) => {
 };
 
 /**
- * Valida el formato del correo electrónico.
- * @param {string} email - El correo electrónico a validar.
- * @returns {boolean} - Verdadero si el correo electrónico es válido, falso en caso contrario.
+ * Carga las reseñas desde el backend.
  */
-const validateEmail = (email) => {
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	return emailRegex.test(email);
+const loadReviews = async () => {
+	try {
+		const response = await fetch('http://localhost:5000/api/reviews');
+		if (!response.ok) throw new Error(`Error al cargar las reseñas: ${response.statusText}`);
+		reviews.value = await response.json();
+		distributeReviews();
+	} catch (error) {
+		console.error(error);
+	}
 };
 
 /**
@@ -169,6 +176,7 @@ const submitReview = async () => {
 		if (response.ok) {
 			successMessage.value = 'Review created successfully!';
 			formData.value = { name: '', email: '', message: '', rating: 0 };
+			await loadReviews(); // Recargar las reseñas después de agregar una nueva.
 			setTimeout(() => {
 				showModal.value = false;
 			}, 1000);
@@ -182,10 +190,21 @@ const submitReview = async () => {
 	}
 };
 
+/**
+ * Valida el formato del correo electrónico.
+ * @param {string} email - El correo electrónico a validar.
+ * @returns {boolean} - Verdadero si el correo electrónico es válido, falso en caso contrario.
+ */
+const validateEmail = (email) => {
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return emailRegex.test(email);
+};
+
 onMounted(() => {
-	distributeReviews();
+	loadReviews();
 });
 </script>
+
 
 <style scoped>
 .review-container {
