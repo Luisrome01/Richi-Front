@@ -26,16 +26,16 @@
 					<div class="section">
 						<div class="combined">
 							<div class="label">First Name</div>
-							<Input placeholder="Enter your first name" />
+							<Input v-model="formData.name" placeholder="Enter your first name" />
 						</div>
 						<div class="combined">
-							<div class="label">Last Name</div>
-							<Input placeholder="Enter your last name" />
+							<div class="label">Email</div>
+							<Input v-model="formData.email" placeholder="Enter your email" />
 						</div>
 					</div>
 					<div class="combined">
 						<div class="label">Description</div>
-						<TextArea placeholder="Enter your review" v-model="formData.message" />
+						<TextArea v-model="formData.message" placeholder="Enter your review" />
 					</div>
 					<div class="combined">
 						<div class="label">Rating</div>
@@ -52,11 +52,11 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { Input, TextArea, ArrowButton, Modal, Slider, SliderControl, Review } from '@/components';
 import { ARROW_DIAGONAL } from '@/utils/media';
 
-const reviews = ref([]); // Aquí se almacenarán las reseñas cargadas del backend.
+const reviews = ref([]);
 const currentStep = ref(1);
 const reviewsPerPage = 6;
 
@@ -65,40 +65,35 @@ const secondPage = ref([]);
 const thirdPage = ref([]);
 
 const distributeReviews = async () => {
-  try {
-    const response = await fetch('http://localhost:5000/api/reviews');
-    const data = await response.json();
+	try {
+		const response = await fetch('http://localhost:5000/api/reviews');
+		const data = await response.json();
 
-    // Función para formatear la fecha
-    const formatDate = (isoDate) => {
-      const options = { year: 'numeric', month: 'short', day: 'numeric' }; // Ejemplo: "Jan 15, 2025"
-      return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
-    };
+		const formatDate = (isoDate) => {
+			const options = { year: 'numeric', month: 'short', day: 'numeric' };
+			return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
+		};
 
-    // Mapear datos con fecha formateada
-    const sortedReviews = data.map((review) => ({
-      name: review.name,
-      rating: review.rating,
-      description: review.message, // Mapear `message` a `description`
-      date: formatDate(review.date), // Formatear la fecha
-    })).sort((a, b) => {
-      if (b.rating === a.rating) {
-        return new Date(b.date) - new Date(a.date);
-      }
-      return b.rating - a.rating;
-    });
+		const sortedReviews = data.map((review) => ({
+			name: review.name,
+			rating: review.rating,
+			description: review.message,
+			date: formatDate(review.date),
+		})).sort((a, b) => {
+			if (b.rating === a.rating) {
+				return new Date(b.date) - new Date(a.date);
+			}
+			return b.rating - a.rating;
+		});
 
-    firstPage.value = sortedReviews.slice(0, reviewsPerPage);
-    secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
-    thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
-  } catch (error) {
-    console.error('Error fetching reviews:', error);
-  }
+		firstPage.value = sortedReviews.slice(0, reviewsPerPage);
+		secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
+		thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
+	} catch (error) {
+		console.error('Error fetching reviews:', error);
+	}
 };
 
-/**
- * Calcula el número total de pasos en el slider.
- */
 const totalSteps = computed(() => {
 	let steps = 0;
 	if (firstPage.value.length > 0) steps += 1;
@@ -107,9 +102,6 @@ const totalSteps = computed(() => {
 	return steps;
 });
 
-/**
- * Constantes reactivas para el modal de creación de reseñas.
- */
 const showModal = ref(false);
 const successMessage = ref('');
 const formData = ref({
@@ -119,26 +111,20 @@ const formData = ref({
 	rating: 0,
 });
 
-/**
- * Muestra el modal de creación de reseñas.
- */
 const openModal = () => {
 	showModal.value = true;
 	successMessage.value = '';
 };
 
-/**
- * Establece la calificación de la reseña.
- * @param {number} star - La calificación de la reseña.
- */
+const closeModal = () => {
+	showModal.value = false;
+};
+
 const setRating = (star) => {
 	formData.value.rating = star;
 	console.log(`${star} estrella${star > 1 ? 's' : ''} seleccionada`);
 };
 
-/**
- * Carga las reseñas desde el backend.
- */
 const loadReviews = async () => {
 	try {
 		const response = await fetch('http://localhost:5000/api/reviews');
@@ -150,10 +136,9 @@ const loadReviews = async () => {
 	}
 };
 
-/**
- * Realiza una solicitud de red para crear una reseña.
- */
 const submitReview = async () => {
+	console.log('Datos enviados:', JSON.stringify(formData.value, null, 2));
+
 	if (!formData.value.name || !formData.value.email || !formData.value.message) {
 		successMessage.value = 'All fields are required!';
 		return;
@@ -176,7 +161,7 @@ const submitReview = async () => {
 		if (response.ok) {
 			successMessage.value = 'Review created successfully!';
 			formData.value = { name: '', email: '', message: '', rating: 0 };
-			await loadReviews(); // Recargar las reseñas después de agregar una nueva.
+			await loadReviews();
 			setTimeout(() => {
 				showModal.value = false;
 			}, 1000);
@@ -190,20 +175,25 @@ const submitReview = async () => {
 	}
 };
 
-/**
- * Valida el formato del correo electrónico.
- * @param {string} email - El correo electrónico a validar.
- * @returns {boolean} - Verdadero si el correo electrónico es válido, falso en caso contrario.
- */
 const validateEmail = (email) => {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return emailRegex.test(email);
 };
 
+// Vigila el estado del modal para controlar el scroll del fondo
+watch(showModal, (newValue) => {
+	if (newValue) {
+		document.body.style.overflow = 'hidden'; // Deshabilitar scroll
+	} else {
+		document.body.style.overflow = ''; // Restaurar scroll
+	}
+});
+
 onMounted(() => {
 	loadReviews();
 });
 </script>
+
 
 
 <style scoped>

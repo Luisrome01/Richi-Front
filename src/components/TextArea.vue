@@ -1,5 +1,11 @@
 <template>
-	<textarea :placeholder="placeholder" :class="['text-area', attrs.class]" v-bind="textAreaAttrs" :value="modelValue" @input="onInput"></textarea>
+	<textarea
+		:placeholder="placeholder"
+		:class="['text-area', attrs.class]"
+		v-bind="textAreaAttrs"
+		:value="modelValue"
+		@input="onInput"
+	></textarea>
 </template>
 
 <script setup>
@@ -16,7 +22,7 @@ defineProps({
 	},
 });
 
-defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']); // Declarar emit
 
 const attrs = useAttrs();
 
@@ -28,7 +34,8 @@ const textAreaAttrs = computed(() => {
  * Emite un evento para actualizar el valor del modelo.
  */
 const onInput = (event) => {
-	emit('update:modelValue', event.target.value);
+	console.log('Valor ingresado en el textarea:', event.target.value); // Debugging
+	emit('update:modelValue', event.target.value); // Emitir el evento correctamente
 };
 </script>
 
