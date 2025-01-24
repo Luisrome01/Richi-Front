@@ -35,7 +35,7 @@
 		<div class="price-container">
 			<div class="context">All for the following price:</div>
 			<div class="context price">$150 USD</div>
-			<div class="redirect">
+			<div class="redirect" @click="scrollToContact()">
 				<div class="subtitle">Book now</div>
 				<img :src="ARROW_DIAGONAL" alt="Arrow" />
 			</div>
@@ -69,6 +69,16 @@
 
 <script setup>
 import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, CAVE, CHAPEL, LIGHTHOUSE, LINE } from '@/utils/media';
+
+/**
+ * Maneja el scroll hacia la sección de contacto.
+ */
+const scrollToContact = () => {
+	const section = document.getElementById('contact');
+	if (section) {
+		section.scrollIntoView({ behavior: 'smooth' });
+	}
+};
 </script>
 
 <style scoped>

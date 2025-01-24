@@ -6,7 +6,7 @@
 			Tu navegador no soporta el formato de video.
 		</video>
 	</div>
-	<div class="wave-container">
+	<div id="about-us" class="wave-container">
 		<div class="about-us-container">
 			<div class="gif-container">
 				<img :src="ABOUT_US" alt="Images" />

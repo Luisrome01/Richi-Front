@@ -1,9 +1,15 @@
 <template>
 	<Menu />
 	<Welcome />
-	<Tours />
-	<Contact />
-	<Reviews />
+	<div id="tours">
+		<Tours />
+	</div>
+	<div id="contact">
+		<Contact />
+	</div>
+	<div id="reviews">
+		<Reviews />
+	</div>
 	<Footer />
 </template>
 
@@ -15,5 +21,3 @@ import Contact from '@/views/Contact.vue';
 import Reviews from '@/views/Reviews.vue';
 import Footer from './components/Footer.vue';
 </script>
-
-<style></style>

@@ -3,17 +3,17 @@
 	<div class="menu-container">
 		<img :src="LOGO_PNG" alt="logo" />
 		<div class="buttons-group">
-			<div class="button-container">
-				<router-link to="/welcome">About us</router-link>
+			<div class="button-container" @click="scrollToSection('about-us')">
+				<div>About us</div>
 			</div>
-			<div class="button-container">
-				<router-link to="/welcome">Tours</router-link>
+			<div class="button-container" @click="scrollToSection('tours')">
+				<div>Tours</div>
 			</div>
-			<div class="button-container">
-				<router-link to="/welcome">Contact us</router-link>
+			<div class="button-container" @click="scrollToSection('contact')">
+				<div>Contact us</div>
 			</div>
-			<div class="button-container hightlighted">
-				<router-link to="/welcome">Leave us a review</router-link>
+			<div class="button-container hightlighted" @click="scrollToSection('reviews')">
+				<div>Leave us a review</div>
 				<img :src="ARROW_DIAGONAL" alt="Go" />
 			</div>
 		</div>
@@ -22,6 +22,16 @@
 
 <script setup>
 import { LOGO_PNG, ARROW_DIAGONAL } from '@/utils/media';
+
+/**
+ * Maneja el scroll hacia la sección indicada.
+ */
+const scrollToSection = (sectionId) => {
+	const section = document.getElementById(sectionId);
+	if (section) {
+		section.scrollIntoView({ behavior: 'smooth' });
+	}
+};
 </script>
 
 <style>
@@ -48,7 +58,6 @@ import { LOGO_PNG, ARROW_DIAGONAL } from '@/utils/media';
 
 img {
 	width: 400px;
-	/* mix-blend-mode: lighten; */
 }
 
 .buttons-group {
