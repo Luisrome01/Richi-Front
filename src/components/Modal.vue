@@ -1,6 +1,6 @@
 <template>
 	<div class="modal-overlay" v-if="modelValue" @click="closeModal">
-		<div class="modal-content" @click.stop>
+		<div class="modal-content" :style="width ? { width } : {}" @click.stop>
 			<button @click="closeModal" class="close-button">
 				<img :src="CLOSE" alt="Close" />
 			</button>
@@ -27,6 +27,10 @@ const props = defineProps({
 		required: false,
 	},
 	description: {
+		type: String,
+		required: false,
+	},
+	width: {
 		type: String,
 		required: false,
 	},
@@ -108,7 +112,7 @@ watch(
 	font-family: 'Stolzl Regular';
 	font-size: 15px;
 	color: #292b2e;
-    padding-right: 50px;
+	padding-right: 50px;
 	margin-top: 5px;
 }
 

@@ -4,68 +4,37 @@
 			<div class="form-container">
 				<div>
 					<div class="section-name">Contact us</div>
-					<div class="description">
-						Have questions or ready to book your unforgettable Aruba adventure? Fill out the form below:
-					</div>
+					<div class="description">Have questions or ready to book your unforgettable Aruba adventure? Fill out the form below:</div>
 				</div>
-				<form
-					ref="contactForm"
-					action="https://formsubmit.co/luisrome3005@gmail.com"
-					method="POST"
-					class="connect-details"
-				>
+				<form ref="contactForm" action="https://formsubmit.co/luisrome3005@gmail.com" method="POST" class="connect-details">
 					<div class="section">
 						<div class="combined">
 							<div class="label">First Name</div>
-							<Input
-								name="first_name"
-								placeholder="Enter your first name"
-								required
-							/>
+							<Input name="first_name" placeholder="Enter your first name" required />
 						</div>
 						<div class="combined">
 							<div class="label">Last Name</div>
-							<Input
-								name="last_name"
-								placeholder="Enter your last name"
-								required
-							/>
+							<Input name="last_name" placeholder="Enter your last name" required />
 						</div>
 					</div>
 					<div class="section">
 						<div class="combined">
 							<div class="label">Email</div>
-							<Input
-								type="email"
-								name="email"
-								placeholder="Enter your email"
-								required
-							/>
+							<Input type="email" name="email" placeholder="Enter your email" required />
 						</div>
 						<div class="combined">
 							<div class="label">Phone Number</div>
-							<Input
-								name="phone_number"
-								placeholder="Enter your phone number"
-							/>
+							<Input name="phone_number" placeholder="Enter your phone number" />
 						</div>
 					</div>
 					<div class="combined">
 						<div class="label">Message</div>
-						<TextArea
-							name="message"
-							placeholder="Enter your message"
-							required
-						/>
+						<TextArea name="message" placeholder="Enter your message" required />
 					</div>
 					<div class="send-button">
-						<ArrowButton
-							subtitle="Send a message"
-							:arrowImage="ARROW_DIAGONAL"
-							@click="submitForm"
-						/>
-            <input type="hidden" name="_next" value="http://localhost:5173/">
-            <input type="hidden" name="_captcha" value="false">
+						<ArrowButton subtitle="Send a message" :arrowImage="ARROW_DIAGONAL" @click="submitForm" />
+						<input type="hidden" name="_next" value="http://localhost:5173/" />
+						<input type="hidden" name="_captcha" value="false" />
 					</div>
 				</form>
 			</div>
@@ -87,10 +56,10 @@
 						</div>
 					</div>
 					<div class="option">
-            <img :src="QR_IMAGE" alt="QR" />
+						<img class="qr" :src="QR_IMAGE" alt="QR" @click="toggleModal" />
 						<div class="option-details">
 							<div class="name">QR Code</div>
-							<div class="value">Scan this to start a new chat</div>
+							<div class="value">Click the preview to scan it</div>
 						</div>
 					</div>
 				</div>
@@ -98,35 +67,45 @@
 				<div class="connect-details">
 					<div class="subtitle">Connect with us</div>
 					<div class="buttons">
-						<a
-							:href="'https://www.facebook.com/share/fCbEgPQg1PgBzrKk/?mibextid=LQQJ4d'"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
+						<a :href="'https://www.facebook.com/share/fCbEgPQg1PgBzrKk/?mibextid=LQQJ4d'" target="_blank" rel="noopener noreferrer">
 							<img :src="FACEBOOK" alt="Facebook" />
 						</a>
-						<a
-							:href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
+						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
 							<img :src="INSTAGRAM" alt="Instagram" />
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		<Modal v-model="showModal" title="QR Code" description="Scan the QR code to start a conversation with us." width="350px">
+			<div class="modal-content">
+				<img class="qr-expanded" :src="QR_IMAGE" alt="QR" @click="toggleModal" />
+			</div>
+		</Modal>
 	</div>
 </template>
 
 <script setup>
-import { Input, TextArea, ArrowButton } from '@/components';
+import { ref } from 'vue';
+import { Input, TextArea, ArrowButton, Modal } from '@/components';
 import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM, QR_IMAGE } from '@/utils/media';
 
+const showModal = ref(false);
+
+/**
+ * Muestra u oculta el modal con el código QR.
+ */
+const toggleModal = () => {
+	showModal.value = !showModal.value;
+};
+
+/**
+ * Envía el formulario de información de contacto.
+ */
 const submitForm = () => {
 	const form = document.querySelector('form');
 	if (form) {
-		form.submit(); // Trigger the form submission
+		form.submit();
 	}
 };
 </script>
@@ -237,6 +216,24 @@ const submitForm = () => {
 	height: 35px;
 }
 
+.qr {
+	border-radius: 5px;
+	cursor: pointer;
+	object-fit: cover;
+	transition: transform 0.3s ease-in-out;
+}
+
+.qr-expanded {
+	width: 250px;
+	height: 250px;
+	margin-top: 15px;
+	object-fit: cover;
+}
+
+.qr:hover {
+	transform: scale(1.1);
+}
+
 .option-details {
 	display: flex;
 	flex-direction: column;
@@ -291,5 +288,12 @@ const submitForm = () => {
 	flex-direction: column;
 	width: 100%;
 	gap: 25px;
+}
+
+.modal-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
 }
 </style>
