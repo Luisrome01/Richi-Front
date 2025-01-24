@@ -17,8 +17,8 @@
 				<img :src="CAR" alt="Clock" />
 				<div class="section-text">
 					<div class="name">Departure times</div>
-					<div class="quantity">9:00 AM - 12:30 PM</div>
-					<div class="quantity">2:00 PM - 5:30 PM</div>
+					<div class="quantity">9:00 AM - 12:00 PM</div>
+					<div class="quantity">2:00 PM - 5:00 PM</div>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 		</div>
 		<div class="price-container">
 			<div class="context">All for the following price:</div>
-			<div class="context price">$150 USD</div>
+			<div class="context price">USD150.00</div>
 			<div class="redirect" @click="scrollToContact()">
 				<div class="subtitle">Book now</div>
 				<img :src="ARROW_DIAGONAL" alt="Arrow" />

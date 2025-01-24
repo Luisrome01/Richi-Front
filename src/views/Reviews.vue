@@ -1,7 +1,7 @@
 <template>
 	<div class="review-container">
 		<div class="highlight"></div>
-		<div class="title">What our clients say about us</div>
+		<div class="title">Your opinion is important to us</div>
 		<div class="slider-container">
 			<Slider :step="currentStep">
 				<div v-if="currentStep === 1" class="reviews">

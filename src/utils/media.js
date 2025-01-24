@@ -22,6 +22,8 @@ export const MESSAGE = `${VITE_IMAGES_ROUTE}message.svg`;
 export const FACEBOOK = `${VITE_IMAGES_ROUTE}facebook.svg`;
 export const INSTAGRAM = `${VITE_IMAGES_ROUTE}instagram.svg`;
 export const QR_IMAGE = `${VITE_IMAGES_ROUTE}qr.jpg`;
+export const TRIPADVISOR = `${VITE_IMAGES_ROUTE}tripadvisor.svg`;
+export const GOOGLE = `${VITE_IMAGES_ROUTE}google.svg`;
 
 export const mediaMap = {
 	LOGO_PNG,
@@ -45,4 +47,6 @@ export const mediaMap = {
 	FACEBOOK,
 	INSTAGRAM,
 	QR_IMAGE,
+  TRIPADVISOR,
+  GOOGLE,
 };
