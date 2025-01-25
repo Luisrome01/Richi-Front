@@ -73,6 +73,12 @@
 						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
 							<img :src="INSTAGRAM" alt="Instagram" />
 						</a>
+            <a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
+							<img :src="GOOGLE" alt="Google" />
+						</a>
+            <a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
+							<img :src="TRIPADVISOR" alt="Trip Advisor" />
+						</a>
 					</div>
 				</div>
 			</div>
@@ -88,7 +94,7 @@
 <script setup>
 import { ref } from 'vue';
 import { Input, TextArea, ArrowButton, Modal } from '@/components';
-import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM, QR_IMAGE } from '@/utils/media';
+import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM, QR_IMAGE, TRIPADVISOR, GOOGLE } from '@/utils/media';
 
 const showModal = ref(false);
 
