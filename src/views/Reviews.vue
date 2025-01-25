@@ -66,7 +66,7 @@ const thirdPage = ref([]);
 
 const distributeReviews = async () => {
 	try {
-		const response = await fetch('http://localhost:5000/api/reviews');
+		const response = await fetch('https://richitour.onrender.com/api/reviews');
 		const data = await response.json();
 
 		const formatDate = (isoDate) => {
@@ -127,7 +127,7 @@ const setRating = (star) => {
 
 const loadReviews = async () => {
 	try {
-		const response = await fetch('http://localhost:5000/api/reviews');
+		const response = await fetch('https://richitour.onrender.com/api/reviews');
 		if (!response.ok) throw new Error(`Error al cargar las reseñas: ${response.statusText}`);
 		reviews.value = await response.json();
 		distributeReviews();
@@ -150,7 +150,7 @@ const submitReview = async () => {
 	}
 
 	try {
-		const response = await fetch('http://localhost:5000/api/reviews', {
+		const response = await fetch('https://richitour.onrender.com/api/reviews', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
