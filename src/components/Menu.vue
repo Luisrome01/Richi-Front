@@ -1,7 +1,7 @@
 <template>
 	<div class="background"></div>
 	<div class="menu-container">
-		<img :src="LOGO_PNG" alt="logo" />
+		<img :src="LOGO_PNG" alt="logo" @click="scrollToTop" />
 		<div class="buttons-group">
 			<div class="button-container" @click="scrollToSection('about-us')">
 				<div>About us</div>
@@ -32,6 +32,13 @@ const scrollToSection = (sectionId) => {
 		section.scrollIntoView({ behavior: 'smooth' });
 	}
 };
+
+/**
+ * Maneja el scroll hacia la parte superior de la página.
+ */
+const scrollToTop = () => {
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 </script>
 
 <style>
@@ -58,6 +65,7 @@ const scrollToSection = (sectionId) => {
 
 img {
 	width: 400px;
+	cursor: pointer;
 }
 
 .buttons-group {
