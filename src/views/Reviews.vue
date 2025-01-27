@@ -74,17 +74,19 @@ const distributeReviews = async () => {
 			return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
 		};
 
-		const sortedReviews = data.map((review) => ({
-			name: review.name,
-			rating: review.rating,
-			description: review.message,
-			date: formatDate(review.date),
-		})).sort((a, b) => {
-			if (b.rating === a.rating) {
-				return new Date(b.date) - new Date(a.date);
-			}
-			return b.rating - a.rating;
-		});
+		const sortedReviews = data
+			.map((review) => ({
+				name: review.name,
+				rating: review.rating,
+				description: review.message,
+				date: formatDate(review.date),
+			}))
+			.sort((a, b) => {
+				if (b.rating === a.rating) {
+					return new Date(b.date) - new Date(a.date);
+				}
+				return b.rating - a.rating;
+			});
 
 		firstPage.value = sortedReviews.slice(0, reviewsPerPage);
 		secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
@@ -194,8 +196,6 @@ onMounted(() => {
 });
 </script>
 
-
-
 <style scoped>
 .review-container {
 	display: flex;
@@ -208,10 +208,10 @@ onMounted(() => {
 
 .highlight {
 	position: relative;
-	width: 301px;
+	width: 280px;
 	height: 66px;
-	left: 77px;
-	top: -7px;
+	left: 64px;
+	top: -8px;
 	background: #f1f1f1;
 	border-radius: 50px;
 	transform: rotate(-1deg);

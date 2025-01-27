@@ -12,7 +12,7 @@
 			<div class="button-container" @click="scrollToSection('contact')">
 				<div>Contact us</div>
 			</div>
-			<div class="button-container hightlighted" @click="scrollToSection('reviews')">
+			<div class="button-container highlighted" @click="scrollToSection('reviews')">
 				<div>Leave us a review</div>
 				<img :src="ARROW_DIAGONAL" alt="Go" />
 			</div>
@@ -41,7 +41,7 @@ const scrollToTop = () => {
 };
 </script>
 
-<style>
+<style scoped>
 .background {
 	position: fixed;
 	top: 0;
@@ -97,7 +97,7 @@ img {
 	background: rgba(68, 68, 68, 0.7);
 }
 
-.button-container.hightlighted {
+.button-container.highlighted {
 	min-width: 199px;
 	min-height: 42px;
 	background: #005c99;
