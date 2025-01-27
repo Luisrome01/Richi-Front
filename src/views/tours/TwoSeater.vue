@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 		<div class="text-container">
-			<div class="title">ATV Single Tour</div>
+			<div class="title">UTV Tour, 2 Seater</div>
 			<div class="title">Information</div>
 			<div class="highlight"></div>
 		</div>
@@ -10,7 +10,7 @@
 				<img :src="DURATION" alt="Clock" />
 				<div class="section-text">
 					<div class="name">Duration</div>
-					<div class="quantity">4 hours</div>
+					<div class="quantity">3 hours</div>
 				</div>
 			</div>
 			<div class="section">
@@ -34,7 +34,7 @@
 		</div>
 		<div class="price-container">
 			<div class="context">All for the following price:</div>
-			<div class="context price">USD 150.00</div>
+			<div class="context price">USD 260.00</div>
 			<div class="redirect" @click="scrollToContact()">
 				<div class="subtitle">Book now</div>
 				<img :src="ARROW_DIAGONAL" alt="Arrow" />
@@ -50,16 +50,16 @@
 	</div>
 	<div class="place-container">
 		<div class="place first">
-			<div class="place-name">Cave Pool</div>
-			<img :src="CAVE" alt="Cave Pool" />
+			<div class="place-name">Bushiribana Gold Mill Ruins</div>
+			<img :src="GOLD_MILL" alt="Ruins" />
 		</div>
 		<div class="place second">
-			<div class="place-name">Alto Vista Chapel</div>
-			<img :src="CHAPEL" alt="Alto Vista Chapel" />
+			<div class="place-name">Baby Natural Bridge</div>
+			<img :src="BRIDGE" alt="Baby Natural Bridge" />
 		</div>
 		<div class="place third">
-			<div class="place-name">California Lighthouse</div>
-			<img :src="LIGHTHOUSE" alt="California Lighthouse" />
+			<div class="place-name">Tres Tapi</div>
+			<img :src="TAPI" alt="Tres Tapi" />
 		</div>
 	</div>
 	<div class="line-container">
@@ -68,7 +68,7 @@
 </template>
 
 <script setup>
-import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, CAVE, CHAPEL, LIGHTHOUSE, LINE } from '@/utils/media';
+import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, GOLD_MILL, BRIDGE, TAPI } from '@/utils/media';
 
 /**
  * Maneja el scroll hacia la sección de contacto.
@@ -93,7 +93,7 @@ const scrollToContact = () => {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 283px;
+	/* width: 283px; */
 	height: fit-content;
 }
 
@@ -308,23 +308,5 @@ const scrollToContact = () => {
 	width: 100%;
 	height: 460px;
 	display: block;
-}
-
-@media (min-width: 1600px) {
-	.place-container {
-		gap: 80px;
-	}
-}
-
-@media (min-width: 2000px) {
-	.place-container {
-		gap: 120px;
-	}
-}
-
-@media (min-width: 2500px) {
-	.place-container {
-		gap: 160px;
-	}
 }
 </style>
