@@ -5,7 +5,10 @@
 				<SingleTour />
 			</div>
 			<div v-else-if="step === 2" class="slide">
-				<NewTour />
+				<TwoSeater />
+			</div>
+			<div v-else-if="step === 3" class="slide">
+				<FourSeater />
 			</div>
 		</Slider>
 	</div>
@@ -17,16 +20,17 @@
 <script setup>
 import { ref } from 'vue';
 import SingleTour from './SingleTour.vue';
-import NewTour from './NewTour.vue';
+import TwoSeater from './TwoSeater.vue';
+import FourSeater from './FourSeater.vue';
 import { Slider, ArrowControl } from '@/components';
 
 const step = ref(1);
 
 const changeSlide = (direction) => {
-	if (direction === 'prev') {
-		step.value = step.value === 1 ? 1 : step.value - 1;
-	} else {
-		step.value = step.value === 2 ? 2 : step.value + 1;
+	if (direction === 'prev' && step.value > 1) {
+		step.value--;
+	} else if (direction === 'next' && step.value < 3) {
+		step.value++;
 	}
 };
 </script>

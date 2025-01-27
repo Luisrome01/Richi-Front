@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 		<div class="text-container">
-			<div class="title">ATV Single Tour</div>
+			<div class="title">UTV Tour, 4 Seater</div>
 			<div class="title">Information</div>
 			<div class="highlight"></div>
 		</div>
@@ -10,15 +10,15 @@
 				<img :src="DURATION" alt="Clock" />
 				<div class="section-text">
 					<div class="name">Duration</div>
-					<div class="quantity">4 hours</div>
+					<div class="quantity">3 hours</div>
 				</div>
 			</div>
 			<div class="section">
 				<img :src="CAR" alt="Clock" />
 				<div class="section-text">
 					<div class="name">Departure times</div>
-					<div class="quantity">9:00 AM - 12:30 PM</div>
-					<div class="quantity">2:00 PM - 5:30 PM</div>
+					<div class="quantity">9:00 AM - 12:00 PM</div>
+					<div class="quantity">2:00 PM - 5:00 PM</div>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 		</div>
 		<div class="price-container">
 			<div class="context">All for the following price:</div>
-			<div class="context price">$150 USD</div>
+			<div class="context price">USD 380.00</div>
 			<div class="redirect" @click="scrollToContact()">
 				<div class="subtitle">Book now</div>
 				<img :src="ARROW_DIAGONAL" alt="Arrow" />
@@ -93,7 +93,7 @@ const scrollToContact = () => {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 283px;
+	/* width: 283px; */
 	height: fit-content;
 }
 
@@ -123,6 +123,7 @@ const scrollToContact = () => {
 	line-height: 22px;
 	text-align: justify;
 	color: #292b2e;
+	z-index: 10;
 }
 
 .description p {
@@ -193,7 +194,7 @@ const scrollToContact = () => {
 
 .context.price {
 	font-family: 'Stolzl Medium';
-	font-size: 36px;
+	font-size: 32px;
 }
 
 .redirect {
@@ -232,6 +233,10 @@ const scrollToContact = () => {
 	left: 0;
 	top: 350px;
 	z-index: 5;
+}
+
+.image-container img {
+	width: 400px;
 }
 
 .place-container {

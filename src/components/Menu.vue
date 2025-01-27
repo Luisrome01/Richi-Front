@@ -1,7 +1,7 @@
 <template>
 	<div class="background"></div>
 	<div class="menu-container">
-		<img :src="LOGO_PNG" alt="logo" />
+		<img :src="LOGO_PNG" alt="logo" @click="scrollToTop" />
 		<div class="buttons-group">
 			<div class="button-container" @click="scrollToSection('about-us')">
 				<div>About us</div>
@@ -12,7 +12,7 @@
 			<div class="button-container" @click="scrollToSection('contact')">
 				<div>Contact us</div>
 			</div>
-			<div class="button-container hightlighted" @click="scrollToSection('reviews')">
+			<div class="button-container highlighted" @click="scrollToSection('reviews')">
 				<div>Leave us a review</div>
 				<img :src="ARROW_DIAGONAL" alt="Go" />
 			</div>
@@ -32,9 +32,16 @@ const scrollToSection = (sectionId) => {
 		section.scrollIntoView({ behavior: 'smooth' });
 	}
 };
+
+/**
+ * Maneja el scroll hacia la parte superior de la página.
+ */
+const scrollToTop = () => {
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 </script>
 
-<style>
+<style scoped>
 .background {
 	position: fixed;
 	top: 0;
@@ -58,6 +65,7 @@ const scrollToSection = (sectionId) => {
 
 img {
 	width: 400px;
+	cursor: pointer;
 }
 
 .buttons-group {
@@ -89,7 +97,7 @@ img {
 	background: rgba(68, 68, 68, 0.7);
 }
 
-.button-container.hightlighted {
+.button-container.highlighted {
 	min-width: 199px;
 	min-height: 42px;
 	background: #005c99;

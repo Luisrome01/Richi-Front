@@ -15,6 +15,9 @@ export const LIST = `${VITE_IMAGES_ROUTE}list.svg`;
 export const CAVE = `${VITE_IMAGES_ROUTE}cave-pool.jpg`;
 export const CHAPEL = `${VITE_IMAGES_ROUTE}alto-vista.jpg`;
 export const LIGHTHOUSE = `${VITE_IMAGES_ROUTE}california.jpg`;
+export const BRIDGE = `${VITE_IMAGES_ROUTE}bridge.jpg`;
+export const TAPI = `${VITE_IMAGES_ROUTE}tres-tapi.jpeg`;
+export const GOLD_MILL = `${VITE_IMAGES_ROUTE}gold-mill.jpg`;
 export const LINE = `${VITE_IMAGES_ROUTE}dotted-line.svg`;
 export const CLOSE = `${VITE_IMAGES_ROUTE}close.svg`;
 export const EMAIL = `${VITE_IMAGES_ROUTE}email.svg`;
@@ -41,6 +44,9 @@ export const mediaMap = {
 	CAVE,
 	CHAPEL,
 	LIGHTHOUSE,
+	BRIDGE,
+	TAPI,
+	GOLD_MILL,
 	CLOSE,
 	EMAIL,
 	MESSAGE,
