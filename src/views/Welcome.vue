@@ -24,7 +24,7 @@
 				</div>
 			</div>
 		</div>
-		<img :src="WAVES" alt="Wave" />
+		<img :src="wavesBg" alt="Wave" />
 		<div class="wave-end">
 			<img src="/images/noise.png" alt="" />
 		</div>
@@ -32,7 +32,36 @@
 </template>
 
 <script setup>
-import { VIDEO_EXAMPLE, WAVES, ABOUT_US } from '@/utils/media';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { VIDEO_EXAMPLE, WAVES, WAVES_2, ABOUT_US } from '@/utils/media';
+
+const windowWidth = ref(window.innerWidth);
+const wavesBg = ref();
+
+/**
+ * Actualiza el ancho de la ventana.
+ */
+const updateWindowWidth = () => {
+	windowWidth.value = window.innerWidth;
+};
+
+/**
+ * Captura el cambio en el ancho de la ventana.
+ */
+watch(windowWidth, (value) => {
+	wavesBg.value = value < 801 ? WAVES_2 : WAVES;
+});
+
+/**
+ * Asigna la imagen de las olas dependiendo del ancho de la ventana.
+ */
+onMounted(() => {
+	wavesBg.value = window.innerWidth < 801 ? WAVES_2 : WAVES;
+	window.addEventListener('resize', updateWindowWidth);
+});
+onUnmounted(() => {
+	window.removeEventListener('resize', updateWindowWidth);
+});
 </script>
 
 <style scoped>
@@ -103,7 +132,6 @@ import { VIDEO_EXAMPLE, WAVES, ABOUT_US } from '@/utils/media';
 	align-items: center;
 	width: 100%;
 	height: 690px;
-	/* padding: 0 20px; */
 	gap: 90px;
 	margin-bottom: 40px;
 }
@@ -149,6 +177,7 @@ import { VIDEO_EXAMPLE, WAVES, ABOUT_US } from '@/utils/media';
 	line-height: 22px;
 	text-align: justify;
 	color: #ffffff;
+	z-index: 10;
 }
 
 .description p {
@@ -157,5 +186,165 @@ import { VIDEO_EXAMPLE, WAVES, ABOUT_US } from '@/utils/media';
 
 .highlighted {
 	font-family: 'BR Omny SemiBold';
+}
+
+@media (max-width: 1300px) {
+	.about-us-container {
+		height: 500px;
+	}
+
+	.gif-container {
+		width: 442.5px;
+		height: 300px;
+		border-radius: 44px;
+	}
+
+	.gif-container img {
+		width: 405px;
+		height: 265.5px;
+		border-radius: 30px;
+	}
+}
+
+@media (max-width: 1100px) {
+	.about-us-container {
+		height: 400px;
+	}
+
+	.gif-container {
+		width: 295px;
+		height: 200px;
+		border-radius: 44px;
+	}
+
+	.gif-container img {
+		width: 270px;
+		height: 177px;
+		border-radius: 30px;
+	}
+
+	.title {
+		font-size: 30px;
+	}
+
+	.description {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 900px) {
+	.about-us-container {
+		height: auto;
+		gap: 50px;
+	}
+
+	.info-container {
+		width: 330px;
+	}
+
+	.title {
+		font-size: 28px;
+	}
+
+	.description {
+		font-size: 14px;
+	}
+
+	.description p {
+		margin: 0 0 12px 0;
+	}
+}
+
+@media (max-width: 800px) {
+	.about-us-container {
+		height: 800px;
+		flex-direction: column;
+	}
+
+	.wave-end {
+		top: -20px;
+	}
+}
+
+@media (max-width: 700px) {
+	.about-us-container {
+		height: 700px;
+	}
+}
+
+@media (max-width: 600px) {
+	.about-us-container {
+		height: 600px;
+	}
+
+	.description {
+		font-size: 12px;
+	}
+
+	.description p {
+		margin: 0;
+	}
+}
+
+@media (max-width: 500px) {
+	.about-us-container {
+		height: 500px;
+		gap: 20px;
+	}
+
+	.info-container {
+		width: 100%;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
+	.title {
+		font-size: 20px;
+	}
+
+	.description {
+		font-size: 15px;
+	}
+
+	.description p {
+		margin: 0 0 12px 0;
+	}
+
+	.wave-end img {
+		border-radius: 0px 0px 40px 40px;
+	}
+}
+
+@media (max-width: 400px) {
+	.about-us-container {
+		height: 450px;
+	}
+
+	.info-container {
+		gap: 10px;
+	}
+
+	.title {
+		font-size: 20px;
+	}
+
+	.description {
+		font-size: 10px;
+	}
+
+	.description p {
+		line-height: 190%;
+		margin: 0;
+	}
+}
+
+@media (max-width: 325px) {
+	.about-us-container {
+		height: 350px;
+	}
+
+	.description {
+		font-size: 10px;
+	}
 }
 </style>

@@ -5,6 +5,7 @@ export const ICON_PNG = `${VITE_IMAGES_ROUTE}logoprueba.png`;
 export const BLUE_LOGO = `${VITE_IMAGES_ROUTE}LOGO-2.png`;
 export const VIDEO_EXAMPLE = `${VITE_VIDEOS_ROUTE}videorichi.mp4`;
 export const WAVES = `${VITE_IMAGES_ROUTE}wave-1.svg`;
+export const WAVES_2 = `${VITE_IMAGES_ROUTE}wave-2.svg`;
 export const ABOUT_US = `${VITE_IMAGES_ROUTE}GIF.gif`;
 export const ARROW_LEFT = `${VITE_IMAGES_ROUTE}arrow-left.svg`;
 export const ARROW_DIAGONAL = `${VITE_IMAGES_ROUTE}arrow-diagonal.svg`;
@@ -34,6 +35,7 @@ export const mediaMap = {
 	BLUE_LOGO,
 	VIDEO_EXAMPLE,
 	WAVES,
+	WAVES_2,
 	ABOUT_US,
 	ARROW_LEFT,
 	ARROW_DIAGONAL,
@@ -53,6 +55,6 @@ export const mediaMap = {
 	FACEBOOK,
 	INSTAGRAM,
 	QR_IMAGE,
-  TRIPADVISOR,
-  GOOGLE,
+	TRIPADVISOR,
+	GOOGLE,
 };
