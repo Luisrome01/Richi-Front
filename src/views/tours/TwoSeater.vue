@@ -68,7 +68,7 @@
 </template>
 
 <script setup>
-import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, GOLD_MILL, BRIDGE, TAPI } from '@/utils/media';
+import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, GOLD_MILL, BRIDGE, TAPI, LINE } from '@/utils/media';
 
 /**
  * Maneja el scroll hacia la sección de contacto.
