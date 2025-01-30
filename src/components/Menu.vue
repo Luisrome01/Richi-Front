@@ -12,6 +12,9 @@
 			<div class="button-container" @click="scrollToSection('tours'); closeMenu()">
 				<div>Tours</div>
 			</div>
+			<div class="button-container" @click="scrollToSection('gallery'); closeMenu()">
+				<div>Gallery</div>
+			</div>
 			<div class="button-container" @click="scrollToSection('contact'); closeMenu()">
 				<div>Contact us</div>
 			</div>
