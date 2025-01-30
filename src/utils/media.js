@@ -28,6 +28,12 @@ export const INSTAGRAM = `${VITE_IMAGES_ROUTE}instagram.svg`;
 export const QR_IMAGE = `${VITE_IMAGES_ROUTE}qr.jpg`;
 export const TRIPADVISOR = `${VITE_IMAGES_ROUTE}tripadvisor.svg`;
 export const GOOGLE = `${VITE_IMAGES_ROUTE}google.svg`;
+export const GALLERY_1 = `${VITE_IMAGES_ROUTE}IMG_1712.png`;
+export const GALLERY_2 = `${VITE_IMAGES_ROUTE}IMG_1738.png`;
+export const GALLERY_3 = `${VITE_IMAGES_ROUTE}IMG_1754.png`;
+export const GALLERY_4 = `${VITE_IMAGES_ROUTE}IMG_1759.png`;
+export const GALLERY_5 = `${VITE_IMAGES_ROUTE}IMG_1794.png`;
+export const GALLERY_6 = `${VITE_IMAGES_ROUTE}IMG_1824.png`;
 
 export const mediaMap = {
 	LOGO_PNG,
@@ -57,4 +63,10 @@ export const mediaMap = {
 	QR_IMAGE,
 	TRIPADVISOR,
 	GOOGLE,
+	GALLERY_1,
+	GALLERY_2,
+	GALLERY_3,
+	GALLERY_4,
+	GALLERY_5,
+	GALLERY_6,
 };
