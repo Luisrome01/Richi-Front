@@ -16,7 +16,7 @@ defineProps({
 	},
 });
 
-const emit = defineEmits(['update:modelValue']); // Declarar emit
+const emit = defineEmits(['update:modelValue']);
 
 const attrs = useAttrs();
 
@@ -28,7 +28,7 @@ const inputAttrs = computed(() => {
  * Emite un evento para actualizar el valor del modelo.
  */
 const onInput = (event) => {
-	emit('update:modelValue', event.target.value); // Aquí usamos emit correctamente
+	emit('update:modelValue', event.target.value);
 };
 </script>
 

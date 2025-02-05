@@ -66,7 +66,6 @@ const scrollToTop = () => {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-// Detectar cambios en el tamaño de pantalla
 onMounted(() => {
 	window.addEventListener('resize', updateLogo);
 	document.addEventListener('click', handleClickOutside);

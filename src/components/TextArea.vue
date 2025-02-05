@@ -22,7 +22,7 @@ defineProps({
 	},
 });
 
-const emit = defineEmits(['update:modelValue']); // Declarar emit
+const emit = defineEmits(['update:modelValue']);
 
 const attrs = useAttrs();
 
@@ -34,8 +34,7 @@ const textAreaAttrs = computed(() => {
  * Emite un evento para actualizar el valor del modelo.
  */
 const onInput = (event) => {
-	console.log('Valor ingresado en el textarea:', event.target.value); // Debugging
-	emit('update:modelValue', event.target.value); // Emitir el evento correctamente
+	emit('update:modelValue', event.target.value);
 };
 </script>
 

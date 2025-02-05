@@ -108,7 +108,6 @@ const updateWindowWidth = () => {
  * Captura el cambio en el ancho de la ventana.
  */
 watch(windowWidth, (value) => {
-	console.log(value);
 	price.value = value >= 501;
 });
 
