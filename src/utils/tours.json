@@ -1,0 +1,80 @@
+[
+	{
+		"value": 1,
+		"title": "ATV Single Tour",
+		"description": "Explore Aruba's beauty and history with our guided tour, featuring iconic attractions like the Bushiribana Gold Mill Ruins, the serene Cave Pool, the picturesque Baby Natural Bridge, the historic Alto Vista Chapel, the majestic California Lighthouse, and the cultural gem Tres Tapi. Experience the best of the island in one unforgettable journey!",
+		"duration": 4,
+		"departures": ["9:00 AM - 12:00 PM", "2:00 PM - 5:00 PM"],
+		"requirements": ["Drivers License", "Tennis shoes", "Swimsuit", "& Good vibes"],
+		"locations": [
+			{
+				"value": 1,
+				"option": "Cave Pool",
+				"icon": "CAVE"
+			},
+			{
+				"value": 2,
+				"option": "Alto Vista Chapel",
+				"icon": "CHAPEL"
+			},
+			{
+				"value": 3,
+				"option": "California Lighthouse",
+				"icon": "LIGHTHOUSE"
+			}
+		],
+		"price": "150.00"
+	},
+	{
+		"value": 2,
+		"title": "UTV Tour, 2 Seater",
+		"description": "Explore Aruba's beauty and history with our guided tour, featuring iconic attractions like the Bushiribana Gold Mill Ruins, the serene Cave Pool, the picturesque Baby Natural Bridge, the historic Alto Vista Chapel, the majestic California Lighthouse, and the cultural gem Tres Tapi. Experience the best of the island in one unforgettable journey!",
+		"duration": 3,
+		"departures": ["9:00 AM - 12:00 PM", "2:00 PM - 5:00 PM"],
+		"requirements": ["Drivers License", "Tennis shoes", "Swimsuit", "& Good vibes"],
+		"locations": [
+			{
+				"value": 1,
+				"option": "Bushiribana Gold Mill Ruins",
+				"icon": "GOLD_MILL"
+			},
+			{
+				"value": 1,
+				"option": "Baby Natural Bridge",
+				"icon": "BRIDGE"
+			},
+			{
+				"value": 1,
+				"option": "Tres Tapi",
+				"icon": "TAPI"
+			}
+		],
+		"price": "260.00"
+	},
+	{
+		"value": 3,
+		"title": "UTV Tour, 4 Seater",
+		"description": "Explore Aruba's beauty and history with our guided tour, featuring iconic attractions like the Bushiribana Gold Mill Ruins, the serene Cave Pool, the picturesque Baby Natural Bridge, the historic Alto Vista Chapel, the majestic California Lighthouse, and the cultural gem Tres Tapi. Experience the best of the island in one unforgettable journey!",
+		"duration": 3,
+		"departures": ["9:00 AM - 12:00 PM", "2:00 PM - 5:00 PM"],
+		"requirements": ["Drivers License", "Tennis shoes", "Swimsuit", "& Good vibes"],
+		"locations": [
+			{
+				"value": 1,
+				"option": "Cave Pool",
+				"icon": "CAVE"
+			},
+			{
+				"value": 2,
+				"option": "Alto Vista Chapel",
+				"icon": "CHAPEL"
+			},
+			{
+				"value": 3,
+				"option": "California Lighthouse",
+				"icon": "LIGHTHOUSE"
+			}
+		],
+		"price": "380.00"
+	}
+]
