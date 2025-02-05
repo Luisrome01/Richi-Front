@@ -6,7 +6,7 @@
 					<div class="section-name">Contact us</div>
 					<div class="description">Have questions or ready to book your unforgettable Aruba adventure? Fill out the form below:</div>
 				</div>
-				<form ref="contactForm" action="https://formsubmit.co/luisrome3005@gmail.com" method="POST" class="connect-details">
+				<form ref="contactForm" :action="form" method="POST" class="connect-details">
 					<div class="section">
 						<div class="combined">
 							<div class="label">First Name</div>
@@ -73,10 +73,10 @@
 						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
 							<img :src="INSTAGRAM" alt="Instagram" />
 						</a>
-            <a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
+						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
 							<img :src="GOOGLE" alt="Google" />
 						</a>
-            <a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
+						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
 							<img :src="TRIPADVISOR" alt="Trip Advisor" />
 						</a>
 					</div>
@@ -95,6 +95,8 @@
 import { ref } from 'vue';
 import { Input, TextArea, ArrowButton, Modal } from '@/components';
 import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM, QR_IMAGE, TRIPADVISOR, GOOGLE } from '@/utils/media';
+
+const form = import.meta.env.VITE_FORM_URL;
 
 const showModal = ref(false);
 

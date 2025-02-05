@@ -56,45 +56,14 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { Input, TextArea, ArrowButton, Modal, Slider, SliderControl, Review } from '@/components';
 import { ARROW_DIAGONAL } from '@/utils/media';
 
-const reviews = ref([]);
+const api = `${import.meta.env.VITE_BASE_URL}/reviews`;
+
 const currentStep = ref(1);
 const reviewsPerPage = 6;
 
 const firstPage = ref([]);
 const secondPage = ref([]);
 const thirdPage = ref([]);
-
-const distributeReviews = async () => {
-	try {
-		const response = await fetch('https://richitour.onrender.com/api/reviews');
-		const data = await response.json();
-
-		const formatDate = (isoDate) => {
-			const options = { year: 'numeric', month: 'short', day: 'numeric' };
-			return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
-		};
-
-		const sortedReviews = data
-			.map((review) => ({
-				name: review.name,
-				rating: review.rating,
-				description: review.message,
-				date: formatDate(review.date),
-			}))
-			.sort((a, b) => {
-				if (b.rating === a.rating) {
-					return new Date(b.date) - new Date(a.date);
-				}
-				return b.rating - a.rating;
-			});
-
-		firstPage.value = sortedReviews.slice(0, reviewsPerPage);
-		secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
-		thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
-	} catch (error) {
-		console.error('Error fetching reviews:', error);
-	}
-};
 
 const totalSteps = computed(() => {
 	let steps = 0;
@@ -124,23 +93,60 @@ const closeModal = () => {
 
 const setRating = (star) => {
 	formData.value.rating = star;
-	console.log(`${star} estrella${star > 1 ? 's' : ''} seleccionada`);
 };
 
+/**
+ * Distribuye las reseñas en tres páginas, ordenadas por calificación y fecha.
+ */
+const distributeReviews = async (data) => {
+	try {
+		const formatDate = (isoDate) => {
+			const options = { year: 'numeric', month: 'short', day: 'numeric' };
+			return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
+		};
+
+		const sortedReviews = data
+			.map((review) => ({
+				name: review.name,
+				rating: review.rating,
+				description: review.message,
+				date: formatDate(review.date),
+			}))
+			.sort((a, b) => {
+				if (b.rating === a.rating) {
+					return new Date(b.date) - new Date(a.date);
+				}
+				return b.rating - a.rating;
+			});
+
+		firstPage.value = sortedReviews.slice(0, reviewsPerPage);
+		secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
+		thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
+	} catch (error) {
+		console.error('Error fetching reviews:', error);
+	}
+};
+
+/**
+ * Realiza una solicitud de red para cargar las reseñas de los usuarios.
+ */
 const loadReviews = async () => {
 	try {
-		const response = await fetch('https://richitour.onrender.com/api/reviews');
+		const response = await fetch(api);
+
 		if (!response.ok) throw new Error(`Error al cargar las reseñas: ${response.statusText}`);
-		reviews.value = await response.json();
-		distributeReviews();
+
+		const data = await response.json();
+		distributeReviews(data);
 	} catch (error) {
 		console.error(error);
 	}
 };
 
+/**
+ * Realiza una solicitud de red para enviar la reseña del usuario.
+ */
 const submitReview = async () => {
-	console.log('Datos enviados:', JSON.stringify(formData.value, null, 2));
-
 	if (!formData.value.name || !formData.value.email || !formData.value.message) {
 		successMessage.value = 'All fields are required!';
 		return;
@@ -152,7 +158,7 @@ const submitReview = async () => {
 	}
 
 	try {
-		const response = await fetch('https://richitour.onrender.com/api/reviews', {
+		const response = await fetch(api, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -171,6 +177,8 @@ const submitReview = async () => {
 			const errorData = await response.json();
 			throw new Error(`Failed to create review: ${errorData.message || response.statusText}`);
 		}
+
+		closeModal();
 	} catch (error) {
 		successMessage.value = `Error: ${error.message}`;
 		console.error('Error creating review:', error);
@@ -182,12 +190,11 @@ const validateEmail = (email) => {
 	return emailRegex.test(email);
 };
 
-// Vigila el estado del modal para controlar el scroll del fondo
 watch(showModal, (newValue) => {
 	if (newValue) {
-		document.body.style.overflow = 'hidden'; // Deshabilitar scroll
+		document.body.style.overflow = 'hidden';
 	} else {
-		document.body.style.overflow = ''; // Restaurar scroll
+		document.body.style.overflow = '';
 	}
 });
 
