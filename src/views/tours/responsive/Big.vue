@@ -2,7 +2,7 @@
 	<div class="slide">
 		<div class="header">
 			<div class="text-container">
-				<div class="title">ATV Single Tour</div>
+				<div class="title">{{ options.title }}</div>
 				<div class="title">Information</div>
 				<div class="highlight"></div>
 			</div>
@@ -11,15 +11,16 @@
 					<img :src="DURATION" alt="Clock" />
 					<div class="section-text">
 						<div class="name">Duration</div>
-						<div class="quantity">4 hours</div>
+						<div class="quantity">{{ options.duration }} hours</div>
 					</div>
 				</div>
 				<div class="section">
 					<img :src="CAR" alt="Clock" />
 					<div class="section-text">
 						<div class="name">Departure times</div>
-						<div class="quantity">9:00 AM - 12:00 PM</div>
-						<div class="quantity">2:00 PM - 5:00 PM</div>
+						<div class="quantity" v-for="(departure, index) in options.departures" :key="index">
+							{{ departure }}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -27,40 +28,28 @@
 				<img :src="LIST" alt="Clock" />
 				<div class="section-text">
 					<div class="name">Requirements</div>
-					<div class="quantity">Drivers License</div>
-					<div class="quantity">Tennis shoes</div>
-					<div class="quantity">Swimsuit</div>
-					<div class="quantity">& Good vibes!</div>
+					<div class="quantity" v-for="(requirement, index) in options.requirements" :key="index">
+						{{ requirement }}
+					</div>
 				</div>
 			</div>
 			<div class="price-container">
 				<div class="context">All for the following price:</div>
-				<div class="context price">USD 150.00</div>
+				<div class="context price">USD {{ options.price }}</div>
 				<div class="redirect" @click="scrollToContact()">
 					<div class="subtitle">Book now</div>
 					<img :src="ARROW_DIAGONAL" alt="Arrow" />
 				</div>
 			</div>
 		</div>
-		<div class="description">
-			Explore Aruba's beauty and history with our <span class="highlighted">guided tour</span>, featuring iconic <span class="highlighted">attractions</span> like the Bushiribana Gold Mill Ruins, the serene Cave Pool, the picturesque Baby Natural
-			Bridge, the historic Alto Vista Chapel, the majestic California Lighthouse, and the cultural gem Tres Tapi. Experience the best of the island in one unforgettable journey!
-		</div>
+		<div class="description">{{ options.description }}</div>
 		<div class="image-container">
 			<img :src="VEHICLE" alt="ATV" />
 		</div>
 		<div class="place-container">
-			<div class="place first">
-				<div class="place-name">Cave Pool</div>
-				<img :src="CAVE" alt="Cave Pool" />
-			</div>
-			<div class="place second">
-				<div class="place-name">Alto Vista Chapel</div>
-				<img :src="CHAPEL" alt="Alto Vista Chapel" />
-			</div>
-			<div class="place third">
-				<div class="place-name">California Lighthouse</div>
-				<img :src="LIGHTHOUSE" alt="California Lighthouse" />
+			<div v-for="(location, index) in formattedOptions.locations" :key="index" :class="['place', location.placeClass]">
+				<div class="place-name">{{ location.option }}</div>
+				<img :src="location.icon" :alt="location.option" />
 			</div>
 		</div>
 		<div class="line-container">
@@ -70,7 +59,16 @@
 </template>
 
 <script setup>
-import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, CAVE, CHAPEL, LIGHTHOUSE, LINE } from '@/utils/media';
+import { ref, defineProps, toRefs } from 'vue';
+import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, LINE } from '@/utils/media';
+import { formatOptions } from '@/utils/helpers';
+
+const props = defineProps({
+	options: Object,
+});
+
+const { options } = toRefs(props);
+const formattedOptions = ref(formatOptions(options.value));
 
 /**
  * Maneja el scroll hacia la sección de contacto.
@@ -108,7 +106,7 @@ const scrollToContact = () => {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 283px;
+	/* width: 283px; */
 	height: fit-content;
 }
 

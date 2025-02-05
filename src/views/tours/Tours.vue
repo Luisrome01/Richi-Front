@@ -1,17 +1,13 @@
 <template>
 	<div class="tours-container">
 		<Slider :step="step">
-			<div v-if="step === 1">
-				<Small v-if="size === 'small'" />
-				<Medium v-if="size === 'medium'" />
-				<Big v-if="size === 'big'" />
-			</div>
-			<div v-else-if="step === 2" class="slide">
-				<TwoSeater />
-			</div>
-			<div v-else-if="step === 3" class="slide">
-				<FourSeater />
-			</div>
+			<template v-for="(tour, index) in toursData" :key="index">
+				<div v-if="step === tour.value">
+					<Small v-if="size === 'small'" :options="tour" />
+					<Medium v-if="size === 'medium'" :options="tour" />
+					<Big v-if="size === 'big'" :options="tour" />
+				</div>
+			</template>
 		</Slider>
 	</div>
 	<div class="slider-control">
@@ -21,13 +17,13 @@
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { Slider, ArrowControl } from '@/components';
 import Small from './responsive/Small.vue';
 import Medium from './responsive/Medium.vue';
 import Big from './responsive/Big.vue';
+import tours from '@/utils/tours.json';
 
-import TwoSeater from './TwoSeater.vue';
-import FourSeater from './FourSeater.vue';
-import { Slider, ArrowControl } from '@/components';
+const toursData = ref(tours);
 
 const step = ref(1);
 
@@ -68,7 +64,7 @@ watch(windowWidth, (value) => {
 onMounted(() => {
 	if (window.innerWidth <= 700) {
 		size.value = 'small';
-	} else if (value <= 1200) {
+	} else if (window.innerWidth <= 1200) {
 		size.value = 'medium';
 	} else {
 		size.value = 'big';
@@ -83,23 +79,10 @@ onUnmounted(() => {
 <style scoped>
 .tours-container {
 	width: 100%;
-	height: 114vh;
+	height: 100vh;
 	padding: 33px;
 	position: relative;
 	overflow: hidden;
-}
-
-.slide {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	width: 100%;
-	height: 592px;
-	background: #f1f1f1;
-	border-radius: 50px;
-	padding: 50px;
-	/* gap: 50px; */
-	z-index: 5;
 }
 
 .slider-control {
@@ -110,15 +93,58 @@ onUnmounted(() => {
 	bottom: 30px;
 }
 
+@media (max-width: 745px) {
+	.tours-container {
+		height: 108vh;
+	}
+}
+
 @media (max-width: 700px) {
 	.tours-container {
+		height: 100vh;
+	}
+}
+
+@media (max-width: 530px) {
+	.tours-container {
+		height: 95vh;
 		padding: 20px;
 	}
+}
 
-	.slide {
-		height: 100%;
-		border-radius: 30px;
-		padding: 30px;
+@media (max-width: 522px) {
+	.tours-container {
+		height: 105vh;
+	}
+}
+
+@media (max-width: 500px) {
+	.tours-container {
+		height: 85vh;
+	}
+}
+
+@media (max-width: 472px) {
+	.tours-container {
+		height: 90vh;
+	}
+}
+
+@media (max-width: 400px) {
+	.tours-container {
+		margin-bottom: 20px;
+	}
+}
+
+@media (max-width: 376px) {
+	.tours-container {
+		height: 105vh;
+	}
+}
+
+@media (max-width: 363px) {
+	.tours-container {
+		height: 90vh;
 	}
 }
 </style>

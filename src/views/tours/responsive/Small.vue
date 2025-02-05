@@ -3,13 +3,10 @@
 		<div class="header">
 			<div class="container">
 				<div class="text-container">
-					<div class="title">ATV Single Tour</div>
+					<div class="title">{{ options.title }}</div>
 					<div class="highlight"></div>
 				</div>
-				<div class="description">
-					Explore Aruba's beauty and history with our <span class="highlighted">guided tour</span>, featuring iconic <span class="highlighted">attractions</span> like the Bushiribana Gold Mill Ruins, the serene Cave Pool, the picturesque Baby Natural
-					Bridge, the historic Alto Vista Chapel, the majestic California Lighthouse, and the cultural gem Tres Tapi. Experience the best of the island in one unforgettable journey!
-				</div>
+				<div class="description">{{ options.description }}</div>
 			</div>
 		</div>
 		<div class="row-2">
@@ -18,25 +15,25 @@
 					<img :src="DURATION" alt="Clock" />
 					<div class="section-text">
 						<div class="name">Duration</div>
-						<div class="quantity">4 hours</div>
+						<div class="quantity">{{ options.duration }} hours</div>
 					</div>
 				</div>
 				<div class="section">
 					<img :src="CAR" alt="Clock" />
 					<div class="section-text">
 						<div class="name">Departure times</div>
-						<div class="quantity">9:00 AM - 12:00 PM</div>
-						<div class="quantity">2:00 PM - 5:00 PM</div>
+						<div class="quantity" v-for="(departure, index) in options.departures" :key="index">
+							{{ departure }}
+						</div>
 					</div>
 				</div>
 				<div class="section">
 					<img :src="LIST" alt="Clock" />
 					<div class="section-text">
 						<div class="name">Requirements</div>
-						<div class="quantity">Drivers License</div>
-						<div class="quantity">Tennis shoes</div>
-						<div class="quantity">Swimsuit</div>
-						<div class="quantity">& Good vibes!</div>
+						<div class="quantity" v-for="(requirement, index) in options.requirements" :key="index">
+							{{ requirement }}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -45,12 +42,12 @@
 					<img :src="VEHICLE" alt="ATV" />
 				</div>
 				<div v-if="!price" class="place">
-					<div class="place-name">Cave Pool</div>
-					<img :src="CAVE" alt="Cave Pool" />
+					<div class="place-name">{{ formattedOptions.locations[0].option }}</div>
+					<img :src="formattedOptions.locations[0].icon" alt="Cave Pool" />
 				</div>
 				<div v-if="price" class="price-container">
 					<div class="context">All for the following price:</div>
-					<div class="context price">USD 150.00</div>
+					<div class="context price">USD {{ options.price }}</div>
 					<div class="redirect" @click="scrollToContact()">
 						<img :src="ARROW_DIAGONAL" alt="Arrow" />
 					</div>
@@ -60,28 +57,32 @@
 		<div v-if="!price" class="price-section">
 			<div class="price-container">
 				<div class="context">All for the following price:</div>
-				<div class="context price">USD 150.00</div>
+				<div class="context price">USD {{ options.price }}</div>
 				<div class="redirect" @click="scrollToContact()">
 					<img :src="ARROW_DIAGONAL" alt="Arrow" />
 				</div>
 			</div>
 		</div>
 		<div v-if="price" class="place-container">
-			<div class="place">
-				<div class="place-name">Cave Pool</div>
-				<img :src="CAVE" alt="Cave Pool" />
-			</div>
-			<div class="place">
-				<div class="place-name">Alto Vista Chapel</div>
-				<img :src="CHAPEL" alt="Alto Vista Chapel" />
+			<div v-for="(location, index) in formattedOptions.locations" :key="index" :class="['place', location.placeClass]">
+				<div class="place-name">{{ location.option }}</div>
+				<img :src="location.icon" :alt="location.option" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue';
-import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, CAVE, CHAPEL, LIGHTHOUSE, LINE } from '@/utils/media';
+import { ref, defineProps, toRefs, watch, onMounted, onUnmounted } from 'vue';
+import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL } from '@/utils/media';
+import { formatOptions } from '@/utils/helpers';
+
+const props = defineProps({
+	options: Object,
+});
+
+const { options } = toRefs(props);
+const formattedOptions = ref(formatOptions(options.value));
 
 const price = ref(false);
 const windowWidth = ref(window.innerWidth);
@@ -107,15 +108,17 @@ const updateWindowWidth = () => {
  * Captura el cambio en el ancho de la ventana.
  */
 watch(windowWidth, (value) => {
-	price.value = value >= 472;
+	console.log(value);
+	price.value = value >= 501;
 });
 
 /**
  * Asigna la imagen de las olas dependiendo del ancho de la ventana.
  */
 onMounted(() => {
-	price.value = window.innerWidth >= 472;
+	price.value = window.innerWidth >= 501;
 	window.addEventListener('resize', updateWindowWidth);
+	formattedOptions.value.locations.pop();
 });
 onUnmounted(() => {
 	window.removeEventListener('resize', updateWindowWidth);
@@ -132,7 +135,6 @@ onUnmounted(() => {
 	background: #f1f1f1;
 	border-radius: 50px;
 	padding: 50px;
-	/* gap: 50px; */
 	z-index: 5;
 }
 
@@ -151,7 +153,7 @@ onUnmounted(() => {
 .text-container {
 	display: flex;
 	flex-direction: column;
-	width: 283px;
+	width: fit-content;
 	height: fit-content;
 }
 
@@ -166,7 +168,7 @@ onUnmounted(() => {
 
 .highlight {
 	position: relative;
-	width: 172.5px;
+	width: calc(100% + 16px);
 	height: 28.75px;
 	top: -31px;
 	background: #ffffff;
@@ -478,7 +480,11 @@ onUnmounted(() => {
 	}
 }
 
-@media (max-width: 472px) {
+@media (max-width: 501px) {
+	.slide {
+		padding: 30px;
+	}
+
 	.description {
 		line-height: 140%;
 	}
@@ -504,10 +510,11 @@ onUnmounted(() => {
 
 	.price-container {
 		justify-content: left;
-		width: 100%;
+		width: 290px;
 		height: 81px;
 		border-radius: 20px;
 		padding: 13px 20px;
+		margin-top: 20px;
 	}
 
 	.context {
@@ -542,6 +549,40 @@ onUnmounted(() => {
 	.place-name {
 		font-size: 12px;
 		padding: 20px;
+	}
+}
+
+@media (max-width: 405px) {
+	.price-container {
+		margin-top: 0;
+	}
+}
+
+@media (max-width: 370px) {
+	.redirect {
+		display: none;
+	}
+
+	.image-container {
+		display: none;
+	}
+
+	.place {
+		display: none;
+	}
+}
+
+@media (max-width: 346px) {
+	.price-container {
+		height: 75px;
+	}
+
+	.context {
+		font-size: 12px;
+	}
+
+	.context.price {
+		font-size: 20px;
 	}
 }
 </style>
