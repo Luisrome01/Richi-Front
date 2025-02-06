@@ -1,11 +1,5 @@
 <template>
-	<textarea
-		:placeholder="placeholder"
-		:class="['text-area', attrs.class]"
-		v-bind="textAreaAttrs"
-		:value="modelValue"
-		@input="onInput"
-	></textarea>
+	<textarea :placeholder="placeholder" :class="['text-area', attrs.class]" v-bind="textAreaAttrs" :value="modelValue" @input="onInput"></textarea>
 </template>
 
 <script setup>
@@ -57,5 +51,20 @@ const onInput = (event) => {
 
 .text-area::placeholder {
 	color: #292b2e80;
+}
+
+@media (max-width: 700px) {
+	.text-area {
+		height: 108px;
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 500px) {
+	.text-area {
+		height: 82px;
+		font-size: 10px;
+		border-radius: 20px;
+	}
 }
 </style>

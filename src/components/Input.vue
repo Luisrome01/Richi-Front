@@ -32,7 +32,6 @@ const onInput = (event) => {
 };
 </script>
 
-
 <style scoped>
 .input {
 	height: 64px;
@@ -48,5 +47,19 @@ const onInput = (event) => {
 
 .input::placeholder {
 	color: #292b2e80;
+}
+
+@media (max-width: 700px) {
+	.input {
+		height: 51px;
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 500px) {
+	.input {
+		height: 41px;
+		font-size: 10px;
+	}
 }
 </style>
