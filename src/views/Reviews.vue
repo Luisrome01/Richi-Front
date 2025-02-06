@@ -195,7 +195,6 @@ onMounted(() => {
 	loadReviews();
 });
 </script>
-
 <style scoped>
 .review-container {
 	display: flex;
@@ -206,6 +205,7 @@ onMounted(() => {
 	padding: 60px 33px;
 }
 
+/* Ajuste responsivo para el título y el highlight */
 .highlight {
 	position: relative;
 	width: 280px;
@@ -228,10 +228,39 @@ onMounted(() => {
 	color: #005c99;
 }
 
-.slider-container {
-	overflow: hidden;
+/* RESPONSIVE para el título y el highlight */
+@media (max-width: 768px) {
+	.title {
+		width: 90%;
+		font-size: 40px;
+	}
+
+	.highlight {
+		width: 220px;
+		left: 50%;
+		transform: translateX(-50%) rotate(-1deg);
+	}
 }
 
+@media (max-width: 480px) {
+	.title {
+		font-size: 32px;
+	}
+
+	.highlight {
+		width: 180px;
+	}
+}
+
+.slider-container {
+	overflow: hidden;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Ajuste responsivo para las tarjetas */
 .reviews {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -240,6 +269,21 @@ onMounted(() => {
 	grid-gap: 20px;
 	padding-top: 90px;
 	padding-bottom: 45px;
+}
+
+/* RESPONSIVE para que las tarjetas no se corten */
+@media (max-width: 1024px) {
+	.reviews {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 768px) {
+	.reviews {
+		grid-template-columns: repeat(1, 1fr);
+		padding-top: 50px;
+		padding-bottom: 30px;
+	}
 }
 
 .create-review-button {
@@ -268,6 +312,14 @@ onMounted(() => {
 	align-items: flex-start;
 	width: 100%;
 	gap: 30px;
+}
+
+/* RESPONSIVE para la sección del formulario */
+@media (max-width: 768px) {
+	.section {
+		flex-direction: column;
+		gap: 15px;
+	}
 }
 
 .combined {
@@ -312,4 +364,19 @@ onMounted(() => {
 	margin-top: 10px;
 	color: #005c99;
 }
+
+/* Ajustes responsivos para el modal */
+.modal {
+	width: 90%;
+	max-width: 600px;
+	padding: 30px;
+}
+
+@media (max-width: 480px) {
+	.modal {
+		width: 95%;
+		padding: 20px;
+	}
+}
 </style>
+
