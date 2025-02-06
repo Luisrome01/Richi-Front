@@ -21,7 +21,7 @@ import Menu from './components/Menu.vue';
 import Welcome from '@/views/Welcome.vue';
 import Tours from '@/views/tours/Tours.vue';
 import Gallery from '@/views/Gallery.vue';
-import Contact from '@/views/Contact.vue';
+import Contact from '@/views/contact/Contact.vue';
 import Reviews from '@/views/Reviews.vue';
 import Footer from './components/Footer.vue';
 </script>
