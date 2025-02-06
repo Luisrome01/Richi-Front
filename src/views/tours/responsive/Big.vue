@@ -130,7 +130,7 @@ const scrollToContact = () => {
 }
 
 .description {
-	font-family: 'BR Omny Regular';
+	font-family: 'Stolzl Regular';
 	width: 605px;
 	font-size: 18px;
 	line-height: 22px;
@@ -144,7 +144,7 @@ const scrollToContact = () => {
 }
 
 .highlighted {
-	font-family: 'BR Omny SemiBold';
+	font-family: 'Stolzl Medium';
 }
 
 .specifics {

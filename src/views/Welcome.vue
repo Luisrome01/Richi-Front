@@ -172,7 +172,7 @@ onUnmounted(() => {
 }
 
 .description {
-	font-family: 'BR Omny Regular';
+	font-family: 'Stolzl Regular';
 	font-size: 18px;
 	line-height: 22px;
 	text-align: justify;
@@ -185,7 +185,7 @@ onUnmounted(() => {
 }
 
 .highlighted {
-	font-family: 'BR Omny SemiBold';
+	font-family: 'Stolzl Medium';
 }
 
 @media (max-width: 1300px) {

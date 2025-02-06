@@ -3,16 +3,6 @@
 /* Fuentes de texto de la aplicación */
 
 @font-face {
-	font-family: 'BR Omny Regular';
-	src: url('./fonts/BROmny-Regular.otf') format('opentype');
-}
-
-@font-face {
-	font-family: 'BR Omny SemiBold';
-	src: url('./fonts/BROmny-SemiBold.otf') format('opentype');
-}
-
-@font-face {
 	font-family: 'Stolzl Medium';
 	src: url('./fonts/stolzl_medium.otf') format('opentype');
 }
