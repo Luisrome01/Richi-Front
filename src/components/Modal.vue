@@ -101,7 +101,8 @@ watch(
 .modal-title {
 	position: relative;
 	width: 100%;
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 25px;
 	color: #005c99;
 }
@@ -109,7 +110,7 @@ watch(
 .modal-description {
 	position: relative;
 	max-width: 661px;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 15px;
 	color: #292b2e;
 	padding-right: 50px;
@@ -118,5 +119,27 @@ watch(
 
 .modal-body {
 	margin-top: 15px;
+}
+
+@media (max-width: 500px) {
+	.modal-content {
+		padding: 30px;
+		max-width: 350px;
+	}
+
+	.close-button {
+		top: 30px;
+		right: 30px;
+	}
+
+	.modal-body {
+		margin-top: 0;
+	}
+
+	.modal-description {
+		font-size: 13px;
+		padding-right: 30px;
+		line-height: 140%;
+	}
 }
 </style>

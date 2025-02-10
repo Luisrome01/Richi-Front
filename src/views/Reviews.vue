@@ -10,7 +10,7 @@
 				<div v-else-if="currentStep === 2" class="reviews">
 					<Review v-for="review in secondPage" :rating="review.rating" :name="review.name" :description="review.description" :date="review.date" :key="review.id" />
 				</div>
-				<div v-else class="reviews">
+				<div v-else class="reviews" v-if="thirdPage.length > 0">
 					<Review v-for="review in thirdPage" :rating="review.rating" :name="review.name" :description="review.description" :date="review.date" :key="review.id" />
 				</div>
 			</Slider>
@@ -52,49 +52,18 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { Input, TextArea, ArrowButton, Modal, Slider, SliderControl, Review } from '@/components';
 import { ARROW_DIAGONAL } from '@/utils/media';
 
-const reviews = ref([]);
+const api = `${import.meta.env.VITE_BASE_URL}/reviews`;
+
 const currentStep = ref(1);
-const reviewsPerPage = 6;
+const reviewsPerPage = ref(6);
 
 const firstPage = ref([]);
 const secondPage = ref([]);
 const thirdPage = ref([]);
-
-const distributeReviews = async () => {
-	try {
-		const response = await fetch('https://richitour.onrender.com/api/reviews');
-		const data = await response.json();
-
-		const formatDate = (isoDate) => {
-			const options = { year: 'numeric', month: 'short', day: 'numeric' };
-			return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
-		};
-
-		const sortedReviews = data
-			.map((review) => ({
-				name: review.name,
-				rating: review.rating,
-				description: review.message,
-				date: formatDate(review.date),
-			}))
-			.sort((a, b) => {
-				if (b.rating === a.rating) {
-					return new Date(b.date) - new Date(a.date);
-				}
-				return b.rating - a.rating;
-			});
-
-		firstPage.value = sortedReviews.slice(0, reviewsPerPage);
-		secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
-		thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
-	} catch (error) {
-		console.error('Error fetching reviews:', error);
-	}
-};
 
 const totalSteps = computed(() => {
 	let steps = 0;
@@ -124,23 +93,68 @@ const closeModal = () => {
 
 const setRating = (star) => {
 	formData.value.rating = star;
-	console.log(`${star} estrella${star > 1 ? 's' : ''} seleccionada`);
 };
 
+/**
+ * Distribuye las reseñas en tres páginas, ordenadas por calificación y fecha.
+ */
+const distributeReviews = async (data) => {
+	try {
+		const formatDate = (isoDate) => {
+			const options = { year: 'numeric', month: 'short', day: 'numeric' };
+			return new Intl.DateTimeFormat('en-US', options).format(new Date(isoDate));
+		};
+
+		const sortedReviews = data
+			.map((review) => ({
+				name: review.name,
+				rating: review.rating,
+				description: review.message,
+				date: formatDate(review.date),
+			}))
+			.sort((a, b) => {
+				if (b.rating === a.rating) {
+					return new Date(b.date) - new Date(a.date);
+				}
+				return b.rating - a.rating;
+			});
+
+		firstPage.value = sortedReviews.slice(0, reviewsPerPage.value);
+		secondPage.value = sortedReviews.slice(reviewsPerPage.value, reviewsPerPage.value * 2);
+
+		if (window.innerWidth >= 470) {
+			thirdPage.value = sortedReviews.slice(reviewsPerPage.value * 2, reviewsPerPage.value * 3);
+		}
+	} catch (error) {
+		console.error('Error fetching reviews:', error);
+	}
+};
+
+const updateReviewsPerPage = () => {
+	reviewsPerPage.value = window.innerWidth <= 470 ? 3 : 6;
+};
+
+/**
+ * Realiza una solicitud de red para cargar las reseñas de los usuarios.
+ */
 const loadReviews = async () => {
 	try {
-		const response = await fetch('https://richitour.onrender.com/api/reviews');
+
+		const response = await fetch(api);
+
 		if (!response.ok) throw new Error(`Error al cargar las reseñas: ${response.statusText}`);
-		reviews.value = await response.json();
-		distributeReviews();
+
+		const data = await response.json();
+		distributeReviews(data);
 	} catch (error) {
 		console.error(error);
 	}
 };
 
+/**
+ * Realiza una solicitud de red para enviar la reseña del usuario.
+ */
 const submitReview = async () => {
-	console.log('Datos enviados:', JSON.stringify(formData.value, null, 2));
-
 	if (!formData.value.name || !formData.value.email || !formData.value.message) {
 		successMessage.value = 'All fields are required!';
 		return;
@@ -152,7 +166,8 @@ const submitReview = async () => {
 	}
 
 	try {
-		const response = await fetch('https://richitour.onrender.com/api/reviews', {
+
+		const response = await fetch(api, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -171,6 +186,8 @@ const submitReview = async () => {
 			const errorData = await response.json();
 			throw new Error(`Failed to create review: ${errorData.message || response.statusText}`);
 		}
+
+		closeModal();
 	} catch (error) {
 		successMessage.value = `Error: ${error.message}`;
 		console.error('Error creating review:', error);
@@ -182,17 +199,24 @@ const validateEmail = (email) => {
 	return emailRegex.test(email);
 };
 
-// Vigila el estado del modal para controlar el scroll del fondo
 watch(showModal, (newValue) => {
 	if (newValue) {
-		document.body.style.overflow = 'hidden'; // Deshabilitar scroll
+		document.body.style.overflow = 'hidden';
 	} else {
-		document.body.style.overflow = ''; // Restaurar scroll
+		document.body.style.overflow = '';
 	}
 });
 
+watch(reviewsPerPage, loadReviews);
+
 onMounted(() => {
+	updateReviewsPerPage();
+	window.addEventListener('resize', updateReviewsPerPage);
 	loadReviews();
+});
+
+onUnmounted(() => {
+	window.removeEventListener('resize', updateReviewsPerPage);
 });
 </script>
 
@@ -208,10 +232,9 @@ onMounted(() => {
 
 .highlight {
 	position: relative;
-	width: 280px;
-	height: 66px;
-	left: 64px;
-	top: -8px;
+	width: 188px;
+	height: 56px;
+	left: 32px;
 	background: #f1f1f1;
 	border-radius: 50px;
 	transform: rotate(-1deg);
@@ -219,9 +242,10 @@ onMounted(() => {
 
 .title {
 	position: absolute;
-	width: 473px;
+	width: 350px;
 	height: 107px;
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 48px;
 	line-height: 104%;
 	text-align: center;
@@ -278,7 +302,7 @@ onMounted(() => {
 }
 
 .label {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
 	font-size: 16px;
 	color: #292b2e;
 }
@@ -306,10 +330,69 @@ onMounted(() => {
 }
 
 .success-message {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 16px;
 	text-align: center;
 	margin-top: 10px;
 	color: #005c99;
+}
+
+@media (max-width: 1300px) {
+	.reviews {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 800px) {
+	.title {
+		font-size: 38px;
+	}
+
+	.highlight {
+		width: 145px;
+		height: 50px;
+		left: 25px;
+		top: -2px;
+	}
+}
+
+@media (max-width: 500px) {
+	.form {
+		gap: 15px;
+	}
+
+	.section {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.content {
+		max-width: 300px;
+	}
+
+	.label {
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 400px) {
+	.slider-container {
+		width: 100%;
+	}
+
+	.reviews {
+		grid-template-columns: 1fr;
+	}
+
+	.title {
+		font-size: 34px;
+	}
+
+	.highlight {
+		width: 135px;
+		height: 40px;
+		left: 23px;
+		top: 0px;
+	}
 }
 </style>

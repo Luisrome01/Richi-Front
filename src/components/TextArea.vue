@@ -1,11 +1,5 @@
 <template>
-	<textarea
-		:placeholder="placeholder"
-		:class="['text-area', attrs.class]"
-		v-bind="textAreaAttrs"
-		:value="modelValue"
-		@input="onInput"
-	></textarea>
+	<textarea :placeholder="placeholder" :class="['text-area', attrs.class]" v-bind="textAreaAttrs" :value="modelValue" @input="onInput"></textarea>
 </template>
 
 <script setup>
@@ -22,7 +16,7 @@ defineProps({
 	},
 });
 
-const emit = defineEmits(['update:modelValue']); // Declarar emit
+const emit = defineEmits(['update:modelValue']);
 
 const attrs = useAttrs();
 
@@ -34,8 +28,7 @@ const textAreaAttrs = computed(() => {
  * Emite un evento para actualizar el valor del modelo.
  */
 const onInput = (event) => {
-	console.log('Valor ingresado en el textarea:', event.target.value); // Debugging
-	emit('update:modelValue', event.target.value); // Emitir el evento correctamente
+	emit('update:modelValue', event.target.value);
 };
 </script>
 
@@ -47,8 +40,9 @@ const onInput = (event) => {
 	border: 1.5px solid #bebebe;
 	border-radius: 30px;
 	padding: 20px;
-	font-family: 'Stolzl Regular';
-	font-size: 14px;
+	font-family: 'Outfit';
+	font-weight: 400;
+	font-size: 16px;
 	color: #292b2e;
 	resize: none;
 	outline: none;
@@ -58,5 +52,20 @@ const onInput = (event) => {
 
 .text-area::placeholder {
 	color: #292b2e80;
+}
+
+@media (max-width: 700px) {
+	.text-area {
+		height: 108px;
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 500px) {
+	.text-area {
+		height: 82px;
+		font-size: 11px;
+		border-radius: 20px;
+	}
 }
 </style>

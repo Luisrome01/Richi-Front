@@ -16,7 +16,7 @@ defineProps({
 	},
 });
 
-const emit = defineEmits(['update:modelValue']); // Declarar emit
+const emit = defineEmits(['update:modelValue']);
 
 const attrs = useAttrs();
 
@@ -28,10 +28,9 @@ const inputAttrs = computed(() => {
  * Emite un evento para actualizar el valor del modelo.
  */
 const onInput = (event) => {
-	emit('update:modelValue', event.target.value); // Aquí usamos emit correctamente
+	emit('update:modelValue', event.target.value);
 };
 </script>
-
 
 <style scoped>
 .input {
@@ -39,8 +38,9 @@ const onInput = (event) => {
 	padding: 10px 20px;
 	border: 1.5px solid #bebebe;
 	border-radius: 100px;
-	font-family: 'Stolzl Regular';
-	font-size: 14px;
+	font-family: 'Outfit';
+	font-weight: 400;
+	font-size: 16px;
 	color: #292b2e;
 	background: transparent;
 	outline: none;
@@ -48,5 +48,19 @@ const onInput = (event) => {
 
 .input::placeholder {
 	color: #292b2e80;
+}
+
+@media (max-width: 700px) {
+	.input {
+		height: 51px;
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 500px) {
+	.input {
+		height: 41px;
+		font-size: 11px;
+	}
 }
 </style>

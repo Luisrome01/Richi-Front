@@ -5,6 +5,7 @@ export const ICON_PNG = `${VITE_IMAGES_ROUTE}logoprueba.png`;
 export const BLUE_LOGO = `${VITE_IMAGES_ROUTE}LOGO-2.png`;
 export const VIDEO_EXAMPLE = `${VITE_VIDEOS_ROUTE}videorichi.mp4`;
 export const WAVES = `${VITE_IMAGES_ROUTE}wave-1.svg`;
+export const WAVES_2 = `${VITE_IMAGES_ROUTE}wave-2.svg`;
 export const ABOUT_US = `${VITE_IMAGES_ROUTE}GIF.gif`;
 export const ARROW_LEFT = `${VITE_IMAGES_ROUTE}arrow-left.svg`;
 export const ARROW_DIAGONAL = `${VITE_IMAGES_ROUTE}arrow-diagonal.svg`;
@@ -27,6 +28,13 @@ export const INSTAGRAM = `${VITE_IMAGES_ROUTE}instagram.svg`;
 export const QR_IMAGE = `${VITE_IMAGES_ROUTE}qr.jpg`;
 export const TRIPADVISOR = `${VITE_IMAGES_ROUTE}tripadvisor.svg`;
 export const GOOGLE = `${VITE_IMAGES_ROUTE}google.svg`;
+export const GALLERY_1 = `${VITE_IMAGES_ROUTE}IMG_1712.png`;
+export const GALLERY_2 = `${VITE_IMAGES_ROUTE}IMG_1738.png`;
+export const GALLERY_3 = `${VITE_IMAGES_ROUTE}IMG_1754.png`;
+export const GALLERY_4 = `${VITE_IMAGES_ROUTE}IMG_1759.png`;
+export const GALLERY_5 = `${VITE_IMAGES_ROUTE}IMG_1794.png`;
+export const GALLERY_6 = `${VITE_IMAGES_ROUTE}IMG_1824.png`;
+export const HAMBURGER = `${VITE_IMAGES_ROUTE}hamburger.svg`;
 
 export const mediaMap = {
 	LOGO_PNG,
@@ -34,6 +42,7 @@ export const mediaMap = {
 	BLUE_LOGO,
 	VIDEO_EXAMPLE,
 	WAVES,
+	WAVES_2,
 	ABOUT_US,
 	ARROW_LEFT,
 	ARROW_DIAGONAL,
@@ -53,6 +62,13 @@ export const mediaMap = {
 	FACEBOOK,
 	INSTAGRAM,
 	QR_IMAGE,
-  TRIPADVISOR,
-  GOOGLE,
+	TRIPADVISOR,
+	GOOGLE,
+	GALLERY_1,
+	GALLERY_2,
+	GALLERY_3,
+	GALLERY_4,
+	GALLERY_5,
+	GALLERY_6,
+	HAMBURGER,
 };
