@@ -120,4 +120,26 @@ watch(
 .modal-body {
 	margin-top: 15px;
 }
+
+@media (max-width: 500px) {
+	.modal-content {
+		padding: 30px;
+		max-width: 350px;
+	}
+
+	.close-button {
+		top: 30px;
+		right: 30px;
+	}
+
+	.modal-body {
+		margin-top: 0;
+	}
+
+	.modal-description {
+		font-size: 13px;
+		padding-right: 30px;
+		line-height: 140%;
+	}
+}
 </style>

@@ -556,7 +556,13 @@ onUnmounted(() => {
 
 @media (max-width: 405px) {
 	.price-container {
-		margin-top: 0;
+		margin-top: 20px;
+	}
+}
+
+@media (max-width: 380px) {
+	.redirect {
+		display: none;
 	}
 }
 

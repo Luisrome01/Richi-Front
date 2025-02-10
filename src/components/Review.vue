@@ -78,4 +78,10 @@ defineProps({
 	color: rgba(41, 43, 46, 0.5);
 	text-align: right;
 }
+
+@media (max-width: 900px) {
+	.review-card {
+		width: 100%;
+	}
+}	
 </style>

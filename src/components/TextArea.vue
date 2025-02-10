@@ -64,7 +64,7 @@ const onInput = (event) => {
 @media (max-width: 500px) {
 	.text-area {
 		height: 82px;
-		font-size: 10px;
+		font-size: 11px;
 		border-radius: 20px;
 	}
 }

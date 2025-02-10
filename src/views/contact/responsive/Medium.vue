@@ -127,7 +127,7 @@ const submitForm = () => {
 	width: 100%;
 	height: 100%;
 	gap: 30px;
-	padding: 33px;
+	padding: 33px 33px 0px;
 }
 
 .background-border {
@@ -350,7 +350,7 @@ const submitForm = () => {
 	}
 
 	.label {
-		font-size: 10px;
+		font-size: 11px;
 	}
 
 	.connect-details {
@@ -386,7 +386,7 @@ const submitForm = () => {
 	}
 
 	.description {
-		font-size: 10px;
+		font-size: 12px;
 	}
 }
 

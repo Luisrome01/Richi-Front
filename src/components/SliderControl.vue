@@ -40,7 +40,6 @@ const setStep = (step) => {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: center;
 }
 
 .control-container {

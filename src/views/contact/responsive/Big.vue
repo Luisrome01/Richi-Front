@@ -121,7 +121,7 @@ const submitForm = () => {
 <style scoped>
 .contact-container {
 	height: 100vh;
-	padding: 33px;
+	padding: 33px 33px 0px;
 }
 
 .background-border {

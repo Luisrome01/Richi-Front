@@ -38,7 +38,7 @@ import { GALLERY_1, GALLERY_2, GALLERY_3, GALLERY_4, GALLERY_5, GALLERY_6 } from
 	align-items: center;
 	width: 100%;
 	height: fit-content;
-	padding: 60px 33px;
+	padding: 60px 33px 20px;
 }
 
 .highlight {

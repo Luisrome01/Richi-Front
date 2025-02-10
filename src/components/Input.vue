@@ -60,7 +60,7 @@ const onInput = (event) => {
 @media (max-width: 500px) {
 	.input {
 		height: 41px;
-		font-size: 10px;
+		font-size: 11px;
 	}
 }
 </style>
