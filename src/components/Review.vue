@@ -83,5 +83,5 @@ defineProps({
 	.review-card {
 		width: 100%;
 	}
-}	
+}
 </style>
