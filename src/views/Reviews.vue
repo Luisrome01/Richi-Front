@@ -139,6 +139,7 @@ const updateReviewsPerPage = () => {
  */
 const loadReviews = async () => {
 	try {
+
 		const response = await fetch(api);
 
 		if (!response.ok) throw new Error(`Error al cargar las reseñas: ${response.statusText}`);
@@ -165,6 +166,7 @@ const submitReview = async () => {
 	}
 
 	try {
+
 		const response = await fetch(api, {
 			method: 'POST',
 			headers: {
