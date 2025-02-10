@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 		<div class="overlay"></div>
-		<video autoplay loop muted>
+		<video autoplay loop muted playsinline>
 			<source :src="VIDEO_EXAMPLE" type="video/mp4" />
 			Tu navegador no soporta el formato de video.
 		</video>
