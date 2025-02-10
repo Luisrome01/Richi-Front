@@ -40,8 +40,9 @@ const onInput = (event) => {
 	border: 1.5px solid #bebebe;
 	border-radius: 30px;
 	padding: 20px;
-	font-family: 'Stolzl Regular';
-	font-size: 14px;
+	font-family: 'Outfit';
+	font-weight: 400;
+	font-size: 16px;
 	color: #292b2e;
 	resize: none;
 	outline: none;

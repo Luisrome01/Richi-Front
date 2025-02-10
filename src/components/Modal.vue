@@ -101,7 +101,8 @@ watch(
 .modal-title {
 	position: relative;
 	width: 100%;
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 25px;
 	color: #005c99;
 }
@@ -109,7 +110,7 @@ watch(
 .modal-description {
 	position: relative;
 	max-width: 661px;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 15px;
 	color: #292b2e;
 	padding-right: 50px;

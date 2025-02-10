@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits } from 'vue';
 
 defineProps({
 	subtitle: {
@@ -19,10 +19,10 @@ defineProps({
 	},
 });
 
-const emit = defineEmits(["submit"]);
+const emit = defineEmits(['submit']);
 
 const handleClick = () => {
-	emit("submit");
+	emit('submit');
 };
 </script>
 
@@ -32,7 +32,7 @@ const handleClick = () => {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 199px;
+	width: 170px;
 	height: 42px;
 	background: #005c99;
 	border-radius: 50px;
@@ -40,7 +40,7 @@ const handleClick = () => {
 }
 
 .subtitle {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 14px;
 	display: flex;
 	align-items: center;
@@ -54,5 +54,16 @@ const handleClick = () => {
 	height: 20px;
 	filter: none;
 	fill: #ffffff;
+}
+
+@media (max-width: 500px) {
+	.subtitle {
+		font-size: 12px;
+	}
+
+	.redirect {
+		width: 150px;
+		height: 42px;
+	}
 }
 </style>

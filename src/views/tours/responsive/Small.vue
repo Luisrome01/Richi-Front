@@ -158,7 +158,8 @@ onUnmounted(() => {
 
 .title {
 	position: relative;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 20px;
 	color: #292b2e;
 	left: 8px;
@@ -177,7 +178,7 @@ onUnmounted(() => {
 }
 
 .description {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	width: 750px;
 	font-size: 18px;
 	line-height: 22px;
@@ -191,7 +192,7 @@ onUnmounted(() => {
 }
 
 .highlighted {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
 }
 
 .row-2 {
@@ -234,14 +235,15 @@ onUnmounted(() => {
 }
 
 .name {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 15px;
 	line-height: 18px;
 	color: #005c99;
 }
 
 .quantity {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 15px;
 	line-height: 18px;
 	color: #292b2e;
@@ -262,13 +264,14 @@ onUnmounted(() => {
 
 .context {
 	width: 100%;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 20px;
 	color: #ffffff;
 }
 
 .context.price {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 32px;
 }
 
@@ -289,7 +292,7 @@ onUnmounted(() => {
 }
 
 .subtitle {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 14px;
 	display: flex;
 	align-items: center;
@@ -340,7 +343,7 @@ onUnmounted(() => {
 	position: absolute;
 	width: 100%;
 	padding: 30px;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 20px;
 	line-height: 107%;
 	color: #ffffff;
@@ -399,7 +402,7 @@ onUnmounted(() => {
 
 	.name,
 	.quantity {
-		font-size: 12px;
+		font-size: 13px;
 	}
 
 	.requirements {
@@ -448,7 +451,7 @@ onUnmounted(() => {
 
 	.price-container {
 		width: 200px;
-		height: 65px;
+		height: 68px;
 		padding: 10px 15px;
 	}
 

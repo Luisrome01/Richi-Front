@@ -114,7 +114,7 @@ const scrollToContact = () => {
 }
 
 .title {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 34px;
 	line-height: 43px;
 	color: #292b2e;
@@ -133,7 +133,7 @@ const scrollToContact = () => {
 }
 
 .description {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	width: 750px;
 	font-size: 18px;
 	line-height: 22px;
@@ -182,13 +182,14 @@ const scrollToContact = () => {
 
 .name {
 	font-family: 'Stolzl Medium';
+	font-weight: 500;
 	font-size: 15px;
 	line-height: 18px;
 	color: #005c99;
 }
 
 .quantity {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 15px;
 	line-height: 18px;
 	color: #292b2e;
@@ -209,7 +210,7 @@ const scrollToContact = () => {
 
 .context {
 	width: 100%;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 20px;
 	color: #ffffff;
 }
@@ -236,7 +237,7 @@ const scrollToContact = () => {
 }
 
 .subtitle {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 14px;
 	display: flex;
 	align-items: center;
@@ -285,7 +286,7 @@ const scrollToContact = () => {
 	position: absolute;
 	width: 100%;
 	padding: 30px;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 20px;
 	line-height: 107%;
 	color: #ffffff;
@@ -344,7 +345,7 @@ const scrollToContact = () => {
 
 	.name,
 	.quantity {
-		font-size: 12px;
+		font-size: 13px;
 	}
 
 	.requirements {
@@ -389,12 +390,12 @@ const scrollToContact = () => {
 @media (max-width: 750px) {
 	.price-container {
 		width: 200px;
-		height: 65px;
+		height: 70px;
 		padding: 10px 15px;
 	}
 
 	.context {
-		font-size: 12px;
+		font-size: 13px;
 	}
 
 	.context.price {

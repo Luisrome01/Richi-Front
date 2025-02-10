@@ -228,7 +228,7 @@ onMounted(() => {
 	position: absolute;
 	width: 473px;
 	height: 107px;
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
 	font-size: 48px;
 	line-height: 104%;
 	text-align: center;
@@ -285,7 +285,7 @@ onMounted(() => {
 }
 
 .label {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
 	font-size: 16px;
 	color: #292b2e;
 }
@@ -313,7 +313,7 @@ onMounted(() => {
 }
 
 .success-message {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 16px;
 	text-align: center;
 	margin-top: 10px;

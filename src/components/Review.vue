@@ -45,7 +45,7 @@ defineProps({
 }
 
 .name {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
 	font-size: 16px;
 	color: #292b2e;
 }
@@ -65,7 +65,7 @@ defineProps({
 }
 
 .description {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 14px;
 	color: #292b2e;
 	height: 70px;
@@ -73,7 +73,7 @@ defineProps({
 }
 
 .date {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 14px;
 	color: rgba(41, 43, 46, 0.5);
 	text-align: right;

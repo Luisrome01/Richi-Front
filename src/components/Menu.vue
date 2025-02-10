@@ -6,19 +6,49 @@
 		<button class="menu-button" @click="toggleMenu">☰</button>
 
 		<div class="buttons-group" :class="{ active: menuOpen }">
-			<div class="button-container" @click="scrollToSection('about-us'); closeMenu()">
+			<div
+				class="button-container"
+				@click="
+					scrollToSection('about-us');
+					closeMenu();
+				"
+			>
 				<div>About us</div>
 			</div>
-			<div class="button-container" @click="scrollToSection('tours'); closeMenu()">
+			<div
+				class="button-container"
+				@click="
+					scrollToSection('tours');
+					closeMenu();
+				"
+			>
 				<div>Tours</div>
 			</div>
-			<div class="button-container" @click="scrollToSection('gallery'); closeMenu()">
+			<div
+				class="button-container"
+				@click="
+					scrollToSection('gallery');
+					closeMenu();
+				"
+			>
 				<div>Gallery</div>
 			</div>
-			<div class="button-container" @click="scrollToSection('contact'); closeMenu()">
+			<div
+				class="button-container"
+				@click="
+					scrollToSection('contact');
+					closeMenu();
+				"
+			>
 				<div>Contact us</div>
 			</div>
-			<div class="button-container highlighted" @click="scrollToSection('reviews'); closeMenu()">
+			<div
+				class="button-container highlighted"
+				@click="
+					scrollToSection('reviews');
+					closeMenu();
+				"
+			>
 				<div>Leave us a review</div>
 				<img :src="ARROW_DIAGONAL" alt="Go" />
 			</div>
@@ -101,7 +131,9 @@ onUnmounted(() => {
 
 .logo {
 	cursor: pointer;
-	transition: width 0.3s ease, height 0.3s ease;
+	transition:
+		width 0.3s ease,
+		height 0.3s ease;
 }
 
 /* Logo tamaño normal en escritorio */
@@ -153,7 +185,9 @@ onUnmounted(() => {
 		opacity: 0;
 		transform: translateY(-10px);
 		pointer-events: none;
-		transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+		transition:
+			opacity 0.3s ease-in-out,
+			transform 0.3s ease-in-out;
 	}
 
 	.buttons-group.active {
@@ -180,8 +214,9 @@ onUnmounted(() => {
 	background: rgba(68, 68, 68, 0.39);
 	backdrop-filter: blur(10.2px);
 	border-radius: 50px;
-	font-family: 'Stolzl Regular';
-	font-size: 14px;
+	font-family: 'Outfit';
+	font-weight: 500;
+	font-size: 15px;
 	color: #ffffff;
 	cursor: pointer;
 	transition: all 0.5s;

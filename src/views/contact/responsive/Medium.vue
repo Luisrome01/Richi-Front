@@ -149,14 +149,15 @@ const submitForm = () => {
 }
 
 .section-name {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 36px;
 	color: #005c99;
 }
 
 .description {
 	width: calc(100% - 110px);
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 20px;
 	color: #292b2e;
 }
@@ -177,7 +178,8 @@ const submitForm = () => {
 }
 
 .label {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 16px;
 	color: #292b2e;
 }
@@ -198,7 +200,8 @@ const submitForm = () => {
 }
 
 .title {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 24px;
 	line-height: 29px;
 	color: #ffffff;
@@ -255,13 +258,14 @@ const submitForm = () => {
 }
 
 .name {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 15px;
 	color: #ffffff;
 }
 
 .value {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 15px;
 	color: #ffffff;
 }
@@ -279,7 +283,8 @@ const submitForm = () => {
 }
 
 .subtitle {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 15px;
 	color: #ffffff;
 }

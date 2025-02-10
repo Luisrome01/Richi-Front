@@ -166,13 +166,13 @@ onUnmounted(() => {
 }
 
 .title {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 40px;
 	color: #ffffff;
 }
 
 .description {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 18px;
 	line-height: 22px;
 	text-align: justify;
@@ -185,7 +185,7 @@ onUnmounted(() => {
 }
 
 .highlighted {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
 }
 
 @media (max-width: 1300px) {

@@ -43,10 +43,9 @@ import { GALLERY_1, GALLERY_2, GALLERY_3, GALLERY_4, GALLERY_5, GALLERY_6 } from
 
 .highlight {
 	position: relative;
-	width: 250px;
-	height: 66px;
-	left: 98px;
-	top: -8px;
+	width: 210px;
+	height: 56px;
+	left: 80px;
 	background: #f1f1f1;
 	border-radius: 50px;
 	transform: rotate(-1deg);
@@ -54,9 +53,10 @@ import { GALLERY_1, GALLERY_2, GALLERY_3, GALLERY_4, GALLERY_5, GALLERY_6 } from
 
 .title {
 	position: absolute;
-	width: 473px;
+	width: 350px;
 	height: 107px;
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 48px;
 	line-height: 104%;
 	text-align: center;
@@ -102,9 +102,10 @@ img {
 	}
 
 	.highlight {
-		width: 200px;
-		height: 56px;
-		left: 78px;
+		width: 170px;
+		height: 50px;
+		left: 62px;
+		top: -2px;
 	}
 }
 
@@ -124,9 +125,10 @@ img {
 	}
 
 	.highlight {
-		width: 180px;
-		height: 56px;
-		left: 70px;
+		width: 150px;
+		height: 40px;
+		left: 55px;
+		top: 0px;
 	}
 }
 </style>

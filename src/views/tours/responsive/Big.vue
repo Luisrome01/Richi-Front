@@ -111,7 +111,8 @@ const scrollToContact = () => {
 }
 
 .title {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit', serif;
+	font-weight: 500;
 	font-size: 36px;
 	line-height: 43px;
 	color: #292b2e;
@@ -120,7 +121,7 @@ const scrollToContact = () => {
 
 .highlight {
 	position: relative;
-	width: 283px;
+	width: 240px;
 	height: 50px;
 	top: -45px;
 	background: #ffffff;
@@ -130,7 +131,7 @@ const scrollToContact = () => {
 }
 
 .description {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	width: 605px;
 	font-size: 18px;
 	line-height: 22px;
@@ -144,7 +145,8 @@ const scrollToContact = () => {
 }
 
 .highlighted {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit', serif;
+	font-weight: 500;
 }
 
 .specifics {
@@ -172,14 +174,15 @@ const scrollToContact = () => {
 }
 
 .name {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit', serif;
+	font-weight: 600;
 	font-size: 15px;
 	line-height: 18px;
 	color: #005c99;
 }
 
 .quantity {
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 15px;
 	line-height: 18px;
 	color: #292b2e;
@@ -192,7 +195,7 @@ const scrollToContact = () => {
 	align-items: center;
 	position: relative;
 	width: 396px;
-	height: 135px;
+	height: 115px;
 	background: #005c99;
 	padding: 25px;
 	border-radius: 31px;
@@ -200,13 +203,14 @@ const scrollToContact = () => {
 
 .context {
 	width: 100%;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 20px;
 	color: #ffffff;
 }
 
 .context.price {
-	font-family: 'Stolzl Medium';
+	font-family: 'Outfit', serif;
+	font-weight: 600;
 	font-size: 32px;
 }
 
@@ -219,7 +223,7 @@ const scrollToContact = () => {
 	width: 138px;
 	height: 42px;
 	left: 244px;
-	top: 78px;
+	top: 58px;
 	gap: 10px;
 	background: #ffffff;
 	border-radius: 40px;
@@ -227,8 +231,9 @@ const scrollToContact = () => {
 }
 
 .subtitle {
-	font-family: 'Stolzl Regular';
-	font-size: 14px;
+	font-family: 'Outfit';
+	font-weight: 500;
+	font-size: 15px;
 	display: flex;
 	align-items: center;
 	text-align: center;
@@ -283,7 +288,7 @@ const scrollToContact = () => {
 	position: absolute;
 	width: 100%;
 	padding: 30px;
-	font-family: 'Stolzl Regular';
+	font-family: 'Outfit';
 	font-size: 20px;
 	line-height: 107%;
 	color: #ffffff;
