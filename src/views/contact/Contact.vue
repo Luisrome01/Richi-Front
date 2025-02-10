@@ -34,7 +34,7 @@ watch(windowWidth, (value) => {
  * Asigna la imagen de las olas dependiendo del ancho de la ventana.
  */
 onMounted(() => {
-	if (windowWidth <= 1120) {
+	if (window.innerWidth <= 1120) {
 		size.value = 'medium';
 	} else {
 		size.value = 'big';
