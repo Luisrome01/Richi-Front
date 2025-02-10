@@ -34,6 +34,7 @@ export const GALLERY_3 = `${VITE_IMAGES_ROUTE}IMG_1754.png`;
 export const GALLERY_4 = `${VITE_IMAGES_ROUTE}IMG_1759.png`;
 export const GALLERY_5 = `${VITE_IMAGES_ROUTE}IMG_1794.png`;
 export const GALLERY_6 = `${VITE_IMAGES_ROUTE}IMG_1824.png`;
+export const HAMBURGER = `${VITE_IMAGES_ROUTE}hamburger.svg`;
 
 export const mediaMap = {
 	LOGO_PNG,
@@ -69,4 +70,5 @@ export const mediaMap = {
 	GALLERY_4,
 	GALLERY_5,
 	GALLERY_6,
+	HAMBURGER,
 };
