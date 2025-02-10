@@ -10,7 +10,7 @@
 				<div v-else-if="currentStep === 2" class="reviews">
 					<Review v-for="review in secondPage" :rating="review.rating" :name="review.name" :description="review.description" :date="review.date" :key="review.id" />
 				</div>
-				<div v-else class="reviews">
+				<div v-else class="reviews" v-if="thirdPage.length > 0">
 					<Review v-for="review in thirdPage" :rating="review.rating" :name="review.name" :description="review.description" :date="review.date" :key="review.id" />
 				</div>
 			</Slider>
@@ -52,14 +52,14 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { Input, TextArea, ArrowButton, Modal, Slider, SliderControl, Review } from '@/components';
 import { ARROW_DIAGONAL } from '@/utils/media';
 
 const api = `${import.meta.env.VITE_BASE_URL}/reviews`;
 
 const currentStep = ref(1);
-const reviewsPerPage = 6;
+const reviewsPerPage = ref(6);
 
 const firstPage = ref([]);
 const secondPage = ref([]);
@@ -119,12 +119,19 @@ const distributeReviews = async (data) => {
 				return b.rating - a.rating;
 			});
 
-		firstPage.value = sortedReviews.slice(0, reviewsPerPage);
-		secondPage.value = sortedReviews.slice(reviewsPerPage, reviewsPerPage * 2);
-		thirdPage.value = sortedReviews.slice(reviewsPerPage * 2, reviewsPerPage * 3);
+		firstPage.value = sortedReviews.slice(0, reviewsPerPage.value);
+		secondPage.value = sortedReviews.slice(reviewsPerPage.value, reviewsPerPage.value * 2);
+
+		if (window.innerWidth >= 470) {
+			thirdPage.value = sortedReviews.slice(reviewsPerPage.value * 2, reviewsPerPage.value * 3);
+		}
 	} catch (error) {
 		console.error('Error fetching reviews:', error);
 	}
+};
+
+const updateReviewsPerPage = () => {
+	reviewsPerPage.value = window.innerWidth <= 470 ? 3 : 6;
 };
 
 /**
@@ -198,8 +205,16 @@ watch(showModal, (newValue) => {
 	}
 });
 
+watch(reviewsPerPage, loadReviews);
+
 onMounted(() => {
+	updateReviewsPerPage();
+	window.addEventListener('resize', updateReviewsPerPage);
 	loadReviews();
+});
+
+onUnmounted(() => {
+	window.removeEventListener('resize', updateReviewsPerPage);
 });
 </script>
 
@@ -215,10 +230,9 @@ onMounted(() => {
 
 .highlight {
 	position: relative;
-	width: 280px;
-	height: 66px;
-	left: 64px;
-	top: -8px;
+	width: 188px;
+	height: 56px;
+	left: 32px;
 	background: #f1f1f1;
 	border-radius: 50px;
 	transform: rotate(-1deg);
@@ -226,9 +240,10 @@ onMounted(() => {
 
 .title {
 	position: absolute;
-	width: 473px;
+	width: 350px;
 	height: 107px;
 	font-family: 'Outfit';
+	font-weight: 500;
 	font-size: 48px;
 	line-height: 104%;
 	text-align: center;
@@ -318,5 +333,64 @@ onMounted(() => {
 	text-align: center;
 	margin-top: 10px;
 	color: #005c99;
+}
+
+@media (max-width: 1300px) {
+	.reviews {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 800px) {
+	.title {
+		font-size: 38px;
+	}
+
+	.highlight {
+		width: 145px;
+		height: 50px;
+		left: 25px;
+		top: -2px;
+	}
+}
+
+@media (max-width: 500px) {
+	.form {
+		gap: 15px;
+	}
+
+	.section {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.content {
+		max-width: 300px;
+	}
+
+	.label {
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 400px) {
+	.slider-container {
+		width: 100%;
+	}
+
+	.reviews {
+		grid-template-columns: 1fr;
+	}
+
+	.title {
+		font-size: 34px;
+	}
+
+	.highlight {
+		width: 135px;
+		height: 40px;
+		left: 23px;
+		top: 0px;
+	}
 }
 </style>
