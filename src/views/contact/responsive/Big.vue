@@ -73,7 +73,7 @@
 						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
 							<img :src="INSTAGRAM" alt="Instagram" />
 						</a>
-						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
+						<a :href="'https://g.page/r/CVZKth4QqEKDEBM/review'" target="_blank" rel="noopener noreferrer">
 							<img :src="GOOGLE" alt="Google" />
 						</a>
 						<a :href="'https://www.instagram.com/richi_toursrental/profilecard/?igsh=MW92dXpub2Y4Y2RzZw=='" target="_blank" rel="noopener noreferrer">
