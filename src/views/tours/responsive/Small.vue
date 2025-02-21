@@ -39,7 +39,7 @@
 			</div>
 			<div class="column-2">
 				<div class="image-container">
-					<img :src="VEHICLE" alt="ATV" />
+					<img :src="formattedOptions.icon" alt="ATV" />
 				</div>
 				<div v-if="!price" class="place">
 					<div class="place-name">{{ formattedOptions.locations[0].option }}</div>
@@ -74,7 +74,7 @@
 
 <script setup>
 import { ref, defineProps, toRefs, watch, onMounted, onUnmounted } from 'vue';
-import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL } from '@/utils/media';
+import { DURATION, CAR, LIST, ARROW_DIAGONAL } from '@/utils/media';
 import { formatOptions } from '@/utils/helpers';
 
 const props = defineProps({

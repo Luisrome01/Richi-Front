@@ -44,7 +44,7 @@
 		</div>
 		<div class="description">{{ options.description }}</div>
 		<div class="image-container">
-			<img :src="VEHICLE" alt="ATV" />
+			<img :src="formattedOptions.icon" alt="ATV" />
 		</div>
 		<div class="place-container">
 			<div v-for="(location, index) in formattedOptions.locations" :key="index" :class="['place', location.placeClass]">
@@ -60,7 +60,7 @@
 
 <script setup>
 import { ref, defineProps, toRefs } from 'vue';
-import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL, LINE } from '@/utils/media';
+import { DURATION, CAR, LIST, ARROW_DIAGONAL, LINE } from '@/utils/media';
 import { formatOptions } from '@/utils/helpers';
 
 const props = defineProps({
