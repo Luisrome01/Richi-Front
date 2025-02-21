@@ -1,7 +1,7 @@
 const { VITE_IMAGES_ROUTE, VITE_VIDEOS_ROUTE } = import.meta.env;
 
 export const LOGO_PNG = `${VITE_IMAGES_ROUTE}logo.png`;
-export const ICON_PNG = `${VITE_IMAGES_ROUTE}logoprueba.png`;
+export const ICON_PNG = `${VITE_IMAGES_ROUTE}logo-nuevo.png`;
 export const BLUE_LOGO = `${VITE_IMAGES_ROUTE}LOGO-2.png`;
 export const VIDEO_EXAMPLE = `${VITE_VIDEOS_ROUTE}videorichi.mp4`;
 export const WAVES = `${VITE_IMAGES_ROUTE}wave-1.svg`;
@@ -10,6 +10,7 @@ export const ABOUT_US = `${VITE_IMAGES_ROUTE}GIF.gif`;
 export const ARROW_LEFT = `${VITE_IMAGES_ROUTE}arrow-left.svg`;
 export const ARROW_DIAGONAL = `${VITE_IMAGES_ROUTE}arrow-diagonal.svg`;
 export const VEHICLE = `${VITE_IMAGES_ROUTE}atv-tour-vehicle.png`;
+export const VEHICLE_6 = `${VITE_IMAGES_ROUTE}utv-tour-vehicle-6.png`;
 export const DURATION = `${VITE_IMAGES_ROUTE}duration.svg`;
 export const CAR = `${VITE_IMAGES_ROUTE}car.svg`;
 export const LIST = `${VITE_IMAGES_ROUTE}list.svg`;
@@ -47,6 +48,7 @@ export const mediaMap = {
 	ARROW_LEFT,
 	ARROW_DIAGONAL,
 	VEHICLE,
+	VEHICLE_6,
 	DURATION,
 	CAR,
 	LIST,
