@@ -33,7 +33,7 @@ const windowWidth = ref(window.innerWidth);
 const changeSlide = (direction) => {
 	if (direction === 'prev' && step.value > 1) {
 		step.value--;
-	} else if (direction === 'next' && step.value < 3) {
+	} else if (direction === 'next' && step.value < toursData.value.length) {
 		step.value++;
 	}
 };

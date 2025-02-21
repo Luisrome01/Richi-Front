@@ -9,7 +9,7 @@
 				<div class="description">{{ options.description }}</div>
 			</div>
 			<div class="image-container">
-				<img :src="VEHICLE" alt="ATV" />
+				<img :src="formattedOptions.icon" alt="ATV" />
 			</div>
 		</div>
 		<div class="row-2">
@@ -59,7 +59,7 @@
 
 <script setup>
 import { ref, defineProps, toRefs } from 'vue';
-import { VEHICLE, DURATION, CAR, LIST, ARROW_DIAGONAL } from '@/utils/media';
+import { DURATION, CAR, LIST, ARROW_DIAGONAL } from '@/utils/media';
 import { formatOptions } from '@/utils/helpers';
 
 const props = defineProps({
