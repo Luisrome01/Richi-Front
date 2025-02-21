@@ -23,7 +23,6 @@ const updateWindowWidth = () => {
  */
 watch(windowWidth, (value) => {
 	if (value <= 1120) {
-		console.log('medium');
 		size.value = 'medium';
 	} else {
 		size.value = 'big';
