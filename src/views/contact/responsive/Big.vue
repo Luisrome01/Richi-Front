@@ -33,7 +33,7 @@
 					</div>
 					<div class="send-button">
 						<ArrowButton subtitle="Send a message" :arrowImage="ARROW_DIAGONAL" @click="submitForm" />
-						<input type="hidden" name="_next" value="http://localhost:5173/" />
+						<input type="hidden" name="_next" :value="website" />
 						<input type="hidden" name="_captcha" value="false" />
 					</div>
 				</form>
@@ -96,6 +96,7 @@ import { ref } from 'vue';
 import { Input, TextArea, ArrowButton, Modal } from '@/components';
 import { ARROW_DIAGONAL, EMAIL, MESSAGE, FACEBOOK, INSTAGRAM, QR_IMAGE, TRIPADVISOR, GOOGLE } from '@/utils/media';
 
+const website = import.meta.env.VITE_WEBSITE_URL;
 const form = import.meta.env.VITE_FORM_URL;
 
 const showModal = ref(false);
