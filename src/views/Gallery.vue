@@ -25,4 +25,23 @@ const current=ref(-1)
 <style scoped>
 .gallery{padding:95px 25px 110px;background:#f9faf7}.head{text-align:center;max-width:750px;margin:0 auto 40px}.head span{font-size:12px;letter-spacing:.18em;font-weight:800;color:#008a9d}.head h2{font-size:clamp(34px,4.7vw,58px);line-height:1.09;letter-spacing:-.03em;margin:15px 0}.head p{color:#526c79;font-size:18px}.pictures{max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:235px;gap:17px}.tile{position:relative;border:0;padding:0;overflow:hidden;border-radius:22px;cursor:pointer;background:#dceceb}.tile.large{grid-column:span 2}.tile img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s}.tile:hover img{transform:scale(1.05)}.tile small{position:absolute;bottom:8px;left:10px;color:white;background:#052e3dbb;padding:5px;border-radius:5px;font-size:10px}.lightbox{position:fixed;inset:0;background:#001d29f0;z-index:2000;display:flex;align-items:center;justify-content:space-around;gap:8px;padding:50px 15px}.lightbox button{color:white;background:#ffffff30;border:0;border-radius:50%;height:45px;min-width:45px;font-size:30px;cursor:pointer}.lightbox .close{position:absolute;top:18px;right:20px;font-size:20px}.viewer{max-width:min(1000px,75vw);text-align:center}.viewer img{max-height:80vh;max-width:100%;object-fit:contain}.viewer a{display:block;color:white;font-size:12px;margin-top:10px}
 @media(max-width:800px){.pictures{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:190px}.tile.large{grid-column:span 2}}@media(max-width:500px){.gallery{padding:70px 15px}.pictures{gap:10px;grid-auto-rows:150px}.tile{border-radius:13px}.viewer{max-width:68vw}}
+
+@media(max-width:800px){
+.gallery{padding:65px 18px 80px}
+.head h2{font-size:clamp(31px,8vw,46px)}
+.head p{font-size:16px}
+.pictures{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,25vw,225px);gap:13px}
+.tile{min-width:0}
+}
+@media(max-width:500px){
+.gallery{padding:60px 14px 75px}
+.pictures{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(125px,38vw,185px);gap:9px}
+.tile.large{grid-column:span 2}
+.tile{border-radius:13px}
+.lightbox{gap:3px;padding:60px 7px 35px}
+.lightbox button{min-width:36px;width:36px;height:44px;font-size:26px}
+.viewer{max-width:calc(100vw - 94px)}
+.viewer img{max-height:74dvh}
+}
+
 </style>
