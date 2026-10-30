@@ -43,4 +43,29 @@ const endpoint='https://formsubmit.co/richitoursrental@gmail.com'
 <style scoped>
 .contact{padding:80px 24px 105px;background:#f9faf7}.wrap{width:100%;max-width:1260px;margin:auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.85fr);gap:24px;align-items:stretch}.form-card{padding:clamp(24px,4vw,58px);border-radius:30px;background:#eff3f2}.kicker,.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:#008c9e}.form-card h2{font-size:clamp(30px,3.7vw,49px);line-height:1.13;letter-spacing:-.03em;margin:14px 0}.form-card>p{color:#5c737f;font-size:16px;line-height:1.6;margin-bottom:25px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.form-card form{display:flex;flex-direction:column;gap:18px}.form-card label{font-weight:650;color:#25485c;font-size:14px;display:flex;flex-direction:column;gap:8px;min-width:0}.form-card input,.form-card textarea{width:100%;background:white;border:1px solid #ccd9d9;border-radius:15px;padding:15px 17px;color:#17394b;font:inherit;font-size:15px;min-height:51px}.form-card textarea{resize:vertical;min-height:145px}.submit{align-self:flex-start;border:none;background:#006e8f;color:white;border-radius:50px;padding:15px 25px;font-weight:800;font-size:15px;cursor:pointer}.honeypot{position:absolute!important;left:-9999px;opacity:0;pointer-events:none}.info{background:#075b8d;color:white;padding:clamp(24px,4vw,48px);border-radius:30px;display:flex;flex-direction:column;gap:23px;overflow-wrap:anywhere}.eyebrow{color:#a9eee1}.info h3{font-size:clamp(26px,3vw,38px);line-height:1.15;margin:0 0 5px}.contact-link{text-decoration:none;color:white;display:flex;gap:13px;align-items:center;font-size:15px}.contact-link>span{display:grid;place-items:center;min-width:42px;height:42px;background:#ffffff25;border-radius:12px;font-size:24px}.contact-link small{display:block;color:#d0e6f4;font-size:12px;margin-bottom:3px}.qr-section{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center;padding:20px 0;border-top:1px solid #ffffff30;border-bottom:1px solid #ffffff30}.qr-section img{width:110px;height:110px;object-fit:cover;border-radius:12px;background:white;padding:5px}.qr-section p{font-size:13px;line-height:1.5;color:#e0ecf4;margin:8px 0}.chat{display:inline-block;color:#fff;font-weight:700;font-size:13px;text-underline-offset:4px}.social{margin-top:auto}.social b{display:block;margin-bottom:15px}.social>div{display:flex;gap:20px;align-items:center}.social a img{width:27px;height:27px;object-fit:contain}
 @media(max-width:1000px){.wrap{grid-template-columns:1fr}.info{gap:16px}.contact{padding-bottom:75px}}@media(max-width:550px){.contact{padding:55px 14px 65px}.two{grid-template-columns:1fr}.form-card,.info{padding:25px;border-radius:22px}.qr-section{grid-template-columns:85px 1fr}.qr-section img{width:85px;height:85px}}
+
+@media(max-width:1100px){
+.wrap{grid-template-columns:minmax(0,1fr)}
+.form-card,.info{min-width:0}
+.info{padding:32px}
+}
+@media(max-width:700px){
+.contact{padding:65px 16px 75px}
+.wrap{gap:18px}
+.form-card,.info{padding:25px;border-radius:22px}
+.two{grid-template-columns:minmax(0,1fr)}
+.form-card h2{font-size:clamp(30px,8vw,43px)}
+.form-card input,.form-card textarea{font-size:16px}
+.contact-link{overflow-wrap:anywhere}
+.qr-section{grid-template-columns:95px minmax(0,1fr);gap:15px}
+.qr-section img{width:95px;height:95px}
+}
+@media(max-width:375px){
+.contact{padding-inline:12px}
+.form-card,.info{padding:19px}
+.qr-section{grid-template-columns:78px minmax(0,1fr);gap:12px}
+.qr-section img{width:78px;height:78px}
+.contact-link>span{min-width:36px;height:36px}
+}
+
 </style>
