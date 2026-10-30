@@ -5,7 +5,6 @@ import Welcome from './views/Welcome.vue'
 import Tours from './views/tours/Tours.vue'
 import Gallery from './views/Gallery.vue'
 import Contact from './views/contact/Contact.vue'
-import Reviews from './views/Reviews.vue'
 import Footer from './components/Footer.vue'
 import Destinations from './views/Destinations.vue'
 const locale=ref(localStorage.getItem('richi-language')==='es'?'es':'en')
@@ -13,7 +12,7 @@ function setLocale(lang){locale.value=lang;localStorage.setItem('richi-language'
 provide('richiLocale',{locale,setLocale})
 </script>
 <template>
-<Menu/><main><Welcome/><section id="tours"><Tours/></section><Destinations/><section id="gallery"><Gallery/></section><section id="reviews"><Reviews/></section><section id="contact"><Contact/></section></main><Footer/>
+<Menu/><main><Welcome/><section id="tours"><Tours/></section><Destinations/><section id="gallery"><Gallery/></section><section id="contact"><Contact/></section></main><Footer/>
 </template>
 <style>
 html{scroll-behavior:smooth;scroll-padding-top:85px}
