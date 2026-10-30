@@ -1,150 +1,17 @@
-<template>
-	<div class="tours-container">
-		<Slider :step="step">
-			<template v-for="(tour, index) in toursData" :key="index">
-				<div v-if="step === tour.value">
-					<Small v-if="size === 'small'" :options="tour" />
-					<Medium v-if="size === 'medium'" :options="tour" />
-					<Big v-if="size === 'big'" :options="tour" />
-				</div>
-			</template>
-		</Slider>
-	</div>
-	<div class="slider-control">
-		<ArrowControl @prev="changeSlide('prev')" @next="changeSlide('next')" />
-	</div>
-</template>
-
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue';
-import { Slider, ArrowControl } from '@/components';
-import Small from './responsive/Small.vue';
-import Medium from './responsive/Medium.vue';
-import Big from './responsive/Big.vue';
-import tours from '@/utils/tours.json';
-
-const toursData = ref(tours);
-
-const step = ref(1);
-
-const size = ref('big');
-const windowWidth = ref(window.innerWidth);
-
-const changeSlide = (direction) => {
-	if (direction === 'prev' && step.value > 1) {
-		step.value--;
-	} else if (direction === 'next' && step.value < toursData.value.length) {
-		step.value++;
-	}
-};
-
-/**
- * Actualiza el ancho de la ventana.
- */
-const updateWindowWidth = () => {
-	windowWidth.value = window.innerWidth;
-};
-
-/**
- * Captura el cambio en el ancho de la ventana.
- */
-watch(windowWidth, (value) => {
-	if (value <= 700) {
-		size.value = 'small';
-	} else if (value <= 1200) {
-		size.value = 'medium';
-	} else {
-		size.value = 'big';
-	}
-});
-
-/**
- * Asigna la imagen de las olas dependiendo del ancho de la ventana.
- */
-onMounted(() => {
-	if (window.innerWidth <= 700) {
-		size.value = 'small';
-	} else if (window.innerWidth <= 1200) {
-		size.value = 'medium';
-	} else {
-		size.value = 'big';
-	}
-	window.addEventListener('resize', updateWindowWidth);
-});
-onUnmounted(() => {
-	window.removeEventListener('resize', updateWindowWidth);
-});
+import {inject} from 'vue'
+import tours from '@/utils/tours.json'
+import {mediaMap} from '@/utils/media'
+const {locale}=inject('richiLocale')
+const t=(en,es)=>locale.value==='es'?es:en
+const tourName=(tour)=>({1:['ATV Single Tour','ATV individual'],2:['UTV 2 Seater','UTV de 2 puestos'],3:['UTV 4 Seater','UTV de 4 puestos'],4:['UTV 6 Seater','UTV de 6 puestos']}[tour.value][locale.value==='es'?1:0])
+function booking(tour){const message=locale.value==='es'?'¡Hola! Vengo de la web de Richi Tours. Quiero consultar disponibilidad para '+tourName(tour)+'.':'Hello! I found Richi Tours online. Could you share availability for '+tourName(tour)+'?';return 'https://wa.me/2977404943?text='+encodeURIComponent(message)}
 </script>
-
+<template>
+<div class="tour-area"><div class="wrap"><div class="heading"><span class="kicker">{{t('CHOOSE YOUR RIDE','ELIGE TU AVENTURA')}}</span><h2>{{t('Your next adventure starts here','Tu próxima aventura comienza aquí')}}</h2><p>{{t('Explore the island with our guided off-road experiences.','Explora la isla con nuestras experiencias guiadas todoterreno.')}}</p></div>
+<div class="cards"><article v-for="tour in tours" :key="tour.value" class="card"><div class="picture"><img :src="mediaMap[tour.icon]" :alt="tourName(tour)" loading="lazy"/><span class="tag">{{tour.duration}} {{t('hours','horas')}}</span></div><div class="details"><h3>{{tourName(tour)}}</h3><p>◷ {{tour.departures.join(' · ')}}</p><p>✓ {{t('Guided Aruba adventure','Excursión guiada en Aruba')}}</p><div class="bottom"><div><small>{{t('Tour price','Precio')}}</small><strong>{{tour.price==='TBD'?t('Ask for price','Consultar'): 'USD $'+tour.price}}</strong></div><a :href="booking(tour)" target="_blank" rel="noopener noreferrer">{{t('Book now','Reservar')}} ↗</a></div></div></article></div></div></div>
+</template>
 <style scoped>
-.tours-container {
-	width: 100%;
-	height: 100vh;
-	padding: 33px;
-	position: relative;
-	overflow: hidden;
-}
-
-.slider-control {
-	display: flex;
-	justify-content: center;
-	position: relative;
-	width: 100%;
-	bottom: 30px;
-}
-
-@media (max-width: 745px) {
-	.tours-container {
-		height: 108vh;
-	}
-}
-
-@media (max-width: 700px) {
-	.tours-container {
-		height: 100vh;
-	}
-}
-
-@media (max-width: 530px) {
-	.tours-container {
-		height: 95vh;
-		padding: 20px;
-	}
-}
-
-@media (max-width: 522px) {
-	.tours-container {
-		height: 105vh;
-	}
-}
-
-@media (max-width: 500px) {
-	.tours-container {
-		height: 85vh;
-	}
-}
-
-@media (max-width: 472px) {
-	.tours-container {
-		height: 90vh;
-	}
-}
-
-@media (max-width: 400px) {
-	.tours-container {
-		margin-bottom: 20px;
-	}
-}
-
-@media (max-width: 376px) {
-	.tours-container {
-		height: 105vh;
-	}
-}
-
-@media (max-width: 363px) {
-	.tours-container {
-		height: 90vh;
-	}
-}
+.tour-area{background:#e9f5f2;padding:105px 25px 120px}.wrap{max-width:1260px;margin:auto}.heading{text-align:center;max-width:750px;margin:0 auto 45px}.kicker{color:#008c9e;font-size:12px;font-weight:800;letter-spacing:.17em}.heading h2{font-size:clamp(33px,4.5vw,58px);line-height:1.1;letter-spacing:-.03em;margin:15px 0}.heading p{color:#5a707b;font-size:18px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.card{border-radius:25px;overflow:hidden;background:#fff;display:flex;flex-direction:column;box-shadow:0 12px 40px #13425312;transition:transform .25s}.card:hover{transform:translateY(-5px)}.picture{height:220px;display:grid;place-items:center;background:linear-gradient(135deg,#cde9e4,#f4f6f0);position:relative}.picture img{height:90%;width:95%;object-fit:contain}.tag{position:absolute;top:12px;left:12px;background:white;border-radius:100px;padding:8px 12px;font-size:12px;font-weight:700}.details{padding:22px;display:flex;flex-direction:column;flex:1}.details h3{font-size:22px;line-height:1.15;margin:0 0 16px;color:#17394b}.details p{font-size:13px;color:#617781;line-height:1.5;margin:0 0 8px}.bottom{border-top:1px solid #e4eeee;margin-top:auto;padding-top:22px;display:flex;justify-content:space-between;align-items:center;gap:8px}.bottom small{display:block;color:#768c95;font-size:11px}.bottom strong{display:block;font-size:18px;white-space:nowrap}.bottom a{background:#007e92;color:white;border-radius:100px;padding:11px 12px;text-decoration:none;font-size:12px;font-weight:700;white-space:nowrap}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.cards{grid-template-columns:1fr}.tour-area{padding:75px 16px}.picture{height:240px}}
 </style>
