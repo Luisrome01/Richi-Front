@@ -34,4 +34,23 @@ function booking(tour){const message=locale.value==='es'?'¡Hola! Vengo de la we
 }
 @media(max-width:350px){.bottom{align-items:stretch;flex-direction:column}.bottom a{width:100%}}
 
+
+/* Vehicle illustrations must stay inside their own visual area on every viewport. */
+.card{min-width:0;isolation:isolate}
+.picture{overflow:hidden;min-width:0;flex:0 0 auto}
+.picture img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center;position:relative;z-index:0;padding:17px 12px}
+.picture .tag{z-index:1}
+.details{position:relative;z-index:1;background:#fff;min-width:0}
+.details h3{overflow-wrap:anywhere}
+@media(min-width:621px) and (max-width:1100px){
+.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.picture{height:clamp(190px,29vw,270px)}
+.picture img{padding:18px 24px}
+}
+@media(max-width:620px){
+.cards{grid-template-columns:minmax(0,1fr)}
+.picture{height:clamp(190px,61vw,265px)}
+.picture img{padding:12px 18px}
+}
+
 </style>
