@@ -19,4 +19,22 @@ const mapUrl=computed(()=>'https://www.openstreetmap.org/?mlat='+selected.value.
 </template>
 <style scoped>
 .area{padding:100px 25px;background:#f9faf7}.layout{max-width:1250px;margin:auto;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}.copy>span{color:#008c9e;font-size:12px;letter-spacing:.17em;font-weight:800}.copy h2{font-size:clamp(34px,4.5vw,59px);line-height:1.08;letter-spacing:-.035em;margin:16px 0}.copy p{font-size:17px;line-height:1.7;color:#57717e;margin-bottom:24px}.stops{display:grid;gap:10px}.stops button{display:flex;align-items:center;justify-content:space-between;background:white;border:1px solid #dce9e8;border-radius:13px;padding:16px 18px;text-align:left;cursor:pointer;font:600 15px Outfit,sans-serif;color:#17394b}.stops button.active{color:#fff;background:#063d59}.copy small{display:block;margin-top:20px;color:#7c8c93;font-size:12px}.map{overflow:hidden;border-radius:27px;background:white;box-shadow:0 15px 42px #1642531c}.map iframe{display:block;width:100%;height:460px;border:0}.map-footer{padding:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}.map-footer strong{font-size:16px}.map-footer a{font-size:13px;font-weight:700;white-space:nowrap;text-decoration:none;color:#007e92}@media(max-width:800px){.layout{grid-template-columns:1fr;gap:30px}.map iframe{height:360px}}
+
+@media(max-width:1080px){.layout{gap:32px}.area{padding:75px 22px}.map iframe{height:400px}}
+@media(max-width:800px){
+.layout{grid-template-columns:minmax(0,1fr);gap:28px}
+.copy,.map{min-width:0}
+.copy h2{font-size:clamp(31px,8vw,46px)}
+.copy p{font-size:16px}
+.stops button{min-height:48px;gap:10px;overflow-wrap:anywhere}
+.map{border-radius:20px}
+.map iframe{width:100%;height:360px}
+}
+@media(max-width:480px){
+.area{padding:65px 15px}
+.map iframe{height:300px}
+.map-footer{flex-direction:column;align-items:flex-start;padding:17px}
+.map-footer a{white-space:normal}
+}
+
 </style>
