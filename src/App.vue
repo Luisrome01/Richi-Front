@@ -4,7 +4,7 @@ import Menu from './components/Menu.vue'
 import Welcome from './views/Welcome.vue'
 import Tours from './views/tours/Tours.vue'
 import Gallery from './views/Gallery.vue'
-import Contact from './views/contact/Contact.vue'
+import Contact from './views/contact/ContactNew.vue'
 import Footer from './components/Footer.vue'
 import Destinations from './views/Destinations.vue'
 const locale=ref(localStorage.getItem('richi-language')==='es'?'es':'en')
