@@ -7,14 +7,19 @@ const photos=[
 {src:GALLERY_1,alt:'Richi Tours Aruba experience'}, {src:GALLERY_2,alt:'Richi Tours Aruba off-road adventure'},
 {src:GALLERY_3,alt:'Guests exploring Aruba'}, {src:GALLERY_4,alt:'Aruba adventure memories'},
 {src:GALLERY_5,alt:'Richi Tours island tour'}, {src:GALLERY_6,alt:'Aruba guided excursion'},
-{src:'https://commons.wikimedia.org/wiki/Special:FilePath/NaturalPoolAruba.jpg?width=1200',alt:'Conchi natural pool, Aruba',credit:'Oogstweg / Wikimedia Commons · CC BY-SA 4.0',creditUrl:'https://commons.wikimedia.org/wiki/File:NaturalPoolAruba.jpg'}
+{src:'/images/aruba-eagle-beach.jpg',fallback:GALLERY_1,alt:'Aerial view of Aruba and Eagle Beach'},
+{src:'/images/aruba-family-beach.jpg',fallback:GALLERY_2,alt:'Visitors enjoying the beach in Aruba'},
+{src:'/images/aruba-turquoise-pool.jpg',fallback:GALLERY_3,alt:'Turquoise waters of Aruba'},
+{src:'/images/aruba-natural-pool.jpg',fallback:GALLERY_4,alt:'Aruba natural pool'},
+{src:'/images/aruba-natural-bridge.jpg',fallback:GALLERY_5,alt:'Natural bridge at the coast of Aruba'}
 ]
+const photoError=(event,photo)=>{if(photo.fallback&&event.target.src!==new URL(photo.fallback,location.href).href)event.target.src=photo.fallback}
 const current=ref(-1)
 </script>
 <template>
 <section class="gallery"><div class="head"><span>{{t('MOMENTS WORTH SHARING','MOMENTOS PARA RECORDAR')}}</span><h2>{{t('A little glimpse of paradise','Un vistazo al paraíso')}}</h2><p>{{t('Real moments, breathtaking scenery and unforgettable adventures.','Momentos reales, paisajes increíbles y aventuras inolvidables.')}}</p></div>
-<div class="pictures"><button v-for="(photo,i) in photos" :key="i" type="button" class="tile" :class="{'large':i===0||i===6}" @click="current=i" :aria-label="t('View photo','Ver foto')+' '+(i+1)"><img :src="photo.src" :alt="photo.alt" loading="lazy" decoding="async"/><small v-if="photo.credit">{{photo.credit}}</small></button></div>
-<div v-if="current>=0" class="lightbox" role="dialog" aria-modal="true" :aria-label="t('Photo viewer','Visor de fotos')" @click.self="current=-1"><button class="close" type="button" @click="current=-1" :aria-label="t('Close','Cerrar')">✕</button><button type="button" @click="current=(current+photos.length-1)%photos.length" aria-label="Previous photo">‹</button><div class="viewer"><img :src="photos[current].src" :alt="photos[current].alt"/><a v-if="photos[current].creditUrl" :href="photos[current].creditUrl" target="_blank" rel="noopener noreferrer">{{photos[current].credit}}</a></div><button type="button" @click="current=(current+1)%photos.length" aria-label="Next photo">›</button></div>
+<div class="pictures"><button v-for="(photo,i) in photos" :key="i" type="button" class="tile" :class="{'large':i===0||i===6}" @click="current=i" :aria-label="t('View photo','Ver foto')+' '+(i+1)"><img :src="photo.src" :alt="photo.alt" @error="photoError($event,photo)" loading="lazy" decoding="async"/><small v-if="photo.credit">{{photo.credit}}</small></button></div>
+<div v-if="current>=0" class="lightbox" role="dialog" aria-modal="true" :aria-label="t('Photo viewer','Visor de fotos')" @click.self="current=-1"><button class="close" type="button" @click="current=-1" :aria-label="t('Close','Cerrar')">✕</button><button type="button" @click="current=(current+photos.length-1)%photos.length" aria-label="Previous photo">‹</button><div class="viewer"><img :src="photos[current].src" :alt="photos[current].alt" @error="photoError($event,photos[current])"/><a v-if="photos[current].creditUrl" :href="photos[current].creditUrl" target="_blank" rel="noopener noreferrer">{{photos[current].credit}}</a></div><button type="button" @click="current=(current+1)%photos.length" aria-label="Next photo">›</button></div>
 </section>
 </template>
 <style scoped>
